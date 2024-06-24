@@ -1,0 +1,54 @@
+---
+title: "Aufgabenblatt 1: Gradientenverfahren"
+---
+
+---------------------------------
+
+# Aufgabe 1 - Installation und Python Einführung
+
+### Setup
+
+Für die Vorlesung benötigen wir die Python Bibliotheken
+
+`matplotlib numpy scipy PIL`
+
+Sie können diese entweder direkt mit `pip` installieren,
+oder eine Python Umgebung erstellen.
+Dafür haben Sie zwei Möglichkeiten `anaconda` und `virtual-environment`.
+Diese sind besonders sinnvoll wenn Sie Projekte haben, die unterschiedliche Python Versionen benötigen.
+
+### Anaconda
+
+Installieren Sie anaconda: https://docs.anaconda.com/anaconda/install/
+auf Linux:
+
+Erzeugen Sie eine neue Umgebung
+
+```shell
+conda create -n dev python=3.6
+conda activate dev
+```
+(evtl auch: ```source activate dev```)
+
+Jetzt ist Ihre Umgebung aktiv.
+Alles was Sie jetzt mit conda oder pip installieren landet in dieser Umgebung.
+
+Installieren der benötigten Pakete:
+
+```shell
+conda install matplotlib numpy scipy pillow
+```
+
+Beachten Sie, dass die `dev` Umgebung nach einem Neustart wieder aktiviert werden muss.
+Wenn Sie einen Editor / eine IDE benutzen, geben Sie die Conda Umgebung als build environment an,
+bzw den Pfad zur Python Binary in der Conda Umgebung.
+Hier ist eine Übersicht für Pycharm: https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html
+
+### Einführung
+
+Arbeiten Sie die Datei PythonIntroduction durch.
+Machen Sie sich mit der Syntax von Python vertraut.
+Recherchieren Sie insbesondere wie Sie die üblichen Operationen der linearen Algebra (z.B. Matrix-Vektor-Multiplikationen, inverse Matrizen, Eigenwertzerlegung) mit Hilfe von Numpy umsetzen können.
+Finden Sie heraus wie Sie Daten in Python mit Matplotlib visualisieren können (z.B. pyplot).
+Schauen Sie sich außerdem die Dokumentation von dem Scipy Optimierungsmodul an (https://docs.scipy.org/doc/scipy/reference/optimize.html).
+Auf die Funktionalität der Toolbox werden wir in späteren Übungen noch zurückkommen.
