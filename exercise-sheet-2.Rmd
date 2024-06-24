@@ -21,7 +21,7 @@ Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-
 
 ::::
 
-# Aufgabe 1
+# Aufgabe 1 (Part1)
 
 Laden Sie das Bild puppy.png mit `PIL.Image.open` und lassen Sie es sich mit `plt.imshow` anzeigen. Das Bild ist offenbar etwas verrauscht. Wir würden gerne ein schöneres Bild rekonstruieren, was auf das folgende Optimierungsproblem hinausläuft:
 
@@ -33,7 +33,7 @@ wobei `y_ij` die gemessenen Bildpixel darstellen und `x_ij` die Bildpixel des ve
 - Optimieren Sie die Funktion mit Gradientenabstieg. Starten Sie mit dem Eingangsbild als Startpunkt, also `x=y` (kopieren Sie das Eingangsbild am besten). Optimieren Sie für 200 Iterationen. Bestimmen Sie die Schrittweite wieder mit Backtracking Line Search. Speichern Sie die gewählte Schrittweite bei jeder Iteration und lassen Sie sich die Schrittweiten über die Iterationen später anzeigen. Verfolgen Sie auch die Konvergenz (also den Funktionswert über die Iterationen) und schauen Sie, wie sich die Lösung `x` in Form des Bildes über die Iterationen verändert.
 
 
-# Aufgabe 2
+# Aufgabe 2 (Part1)
 
 Nun sollen Sie eines der komplexeren, von der `Scipy Optimize` Bibliothek zur Verfügung gestellten Verfahren ausprobieren. Finden Sie dazu zunächst online heraus, wie Sie die Funktion und ihren Gradienten übergeben können und welche Verfahren die Bibliothek anbietet. Stöbern Sie ruhig eine Weile. Bedenken Sie, dass wir es hier mit einem nichtlinearen Problem ohne Nebenbedingungen zu tun haben.
 
@@ -48,14 +48,14 @@ More info at:
 
 Implementieren Sie dabei alle Stub-Methoden definiert in `part1.py`. Die Signaturen von diesen Methoden dürfen nicht geändert werden, weil die Abgaben demnächst mit Hilfe von automatisierten Tests evaluiert werden.
 
-# Aufgabe 3
+# Aufgabe 3 (Part2)
 
 In dieser Übung sollen Sie ein Least-Squares Optimierungsproblem lösen, indem Sie eine eindiminsionale Kurve an die Datenpunkte anpassen.
 
 Die Datenpunkte `x_values`, `h_values` finden Sie in der Datei `part2.py`.
 Visualizieren Sie diese mit `matplotlib`.
 
-Die Zielfunktion hat die Form $y=p_1e^{p_2x}$.
+Die Zielfunktion hat die Form \(y=p_1e^{p_2x}\).
 Sie sollen das Gauss-Newton-Verfahren anwenden, um die optimalen Werte für die Parameter $p_1$ und $p_2$ zu finden.
 
 In jeder Iteration ist ein lineares Gleichungssystem zu lösen.
