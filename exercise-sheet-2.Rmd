@@ -1,5 +1,5 @@
 ---
-title: "Aufgabenblatt 2: Optimierungsvorlesung - Newton und Quasi-Newton-Verfahren"
+title: "Arbeitsblatt 2: Optimierungsvorlesung - Newton und Quasi-Newton-Verfahren"
 ---
 
 ---------------------------------
@@ -55,9 +55,9 @@ In dieser Übung sollen Sie ein Least-Squares Optimierungsproblem lösen, indem 
 Die Datenpunkte `x_values`, `h_values` finden Sie in der Datei `part2.py`.
 Visualizieren Sie diese mit `matplotlib`.
 
-Die Zielfunktion hat die Form \(y=p_1e^{p_2x}\).
+Die Zielfunktion hat die Form $y=p_1e^{p_2x}$.
 Sie sollen das Gauss-Newton-Verfahren anwenden, um die optimalen Werte für die Parameter $p_1$ und $p_2$ zu finden.
 
 In jeder Iteration ist ein lineares Gleichungssystem zu lösen.
 Dafür können Sie die `numpy.linalg.solve` Funktion verwenden.
-`[1, 1]` ist ein guter Startpunkt für diese Aufgabe. Brechen Sie die Iterationen ab, sobald die Abbruchbedingung $$||x_{k+1}-x_k||_2^2<\epsilon$$ mit $$\epsilon=10^{-4}$$ erfüllt ist.
+`[1, 1]` ist ein guter Startpunkt für diese Aufgabe. Brechen Sie die Iterationen ab, sobald die Abbruchbedingung $||x_{k+1}-x_k||_2^2<\epsilon$ mit $\epsilon=10^{-4}$ erfüllt ist.

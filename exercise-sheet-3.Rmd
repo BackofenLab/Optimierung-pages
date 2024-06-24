@@ -1,0 +1,39 @@
+---
+title: "Arbeitsblatt 3: Lagrange Multiplikatoren"
+---
+
+---------------------------------
+
+
+:::: {#explaining .message-box }
+
+::: {#note-exp .note-header}
+```{r, include=knitr::is_html_output(), echo=FALSE,}
+knitr::include_graphics("figures/infoicon.svg")
+```
+**Note**
+:::
+::: {#note-exp .note-body}
+
+Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-freiburg.de/Lehre/Courses/latest/material/optimierung-uebung3.zip) heruntergeladen werden.
+
+:::
+
+::::
+
+# Aufgabe 1
+
+Gegeben ist folgendes Optimierungsproblem:
+
+$$
+\underset{x \in \mathbb{R}^2}{\min}~(x_1 - 3)^2 + (x_2 - 1)^2,~s.t.~\begin{cases} & \text{ } x_1 + x_2 \leq 1 \\ & \text{ } x_1 - x_2 \leq 1 \\ & \text{} -x_1 + x_2 \leq 1 \\ & \text{} -x_1 - x_2 \leq 1 \end{cases}
+$$
+
+
+- Für diese Aufgabe brauchen Sie nichts zu programmieren. Lösen und dokumentieren Sie die nachfolgenden Schritte auf einem Blatt Papier oder in Latex.
+- Machen Sie eine Skizze des erlaubten Suchraums.
+- Berechnen Sie für verschiedene Punkte `P1(0|0), P2(1|0), P3(0|1), P4(-0.5|-0.5), P5(0.5|0.5)` des Suchraums den Gradienten der Funktion und dessen Betrag. Zeichnen Sie den Gradienten in die Skizze ein.
+- Wo befindet sich das Minimum der Funktion ohne Nebenbedingungen? Ist es innerhalb des Suchraums?
+- In welchem Punkt $(x_1^*, x_2^*)$ aus dem Suchraum ist die Funktion minimal? Es ist ausreichend, dies anhand der Skizze zu erläutern.
+- Welche Nebenbedingungen sind in diesem Punkt aktiv? Warum?
+- Überprüfen Sie die KKT Bedingungen im optimalen Punkt $(x_1^*, x_2^*)$. Dabei sollen Sie das Gleichungssystem lösen um die optimalen Lambda-Werte zu finden.
