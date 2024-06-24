@@ -21,7 +21,7 @@ Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-
 
 ::::
 
-# Aufgabe 1 - Installation und Python Einführung
+# Installation
 
 ### Setup
 
@@ -61,7 +61,8 @@ Wenn Sie einen Editor / eine IDE benutzen, geben Sie die Conda Umgebung als buil
 bzw den Pfad zur Python Binary in der Conda Umgebung.
 Hier ist eine Übersicht für Pycharm: https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html
 
-### Einführung
+
+# Aufgabe 1 - Python Einführung
 
 Arbeiten Sie die Datei PythonIntroduction durch.
 
@@ -84,7 +85,7 @@ $$f(x) = \frac{1}{4}x^4 + 2x^3 - 3x - 4$$
 
 Nutzen sie hierzu die Stub-Methoden in der Datei `ex2.py`.
 
-## Aufgabe 3
+# Aufgabe 3
 
 Minimieren Sie die zweidimensionale Funktion:
 

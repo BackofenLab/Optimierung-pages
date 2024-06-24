@@ -1,0 +1,63 @@
+---
+title: "Aufgabenblatt 2: Optimierungsvorlesung - Newton und Quasi-Newton-Verfahren"
+---
+
+---------------------------------
+
+
+:::: {#explaining .message-box }
+
+::: {#note-exp .note-header}
+```{r, include=knitr::is_html_output(), echo=FALSE,}
+knitr::include_graphics("figures/infoicon.svg")
+```
+**Note**
+:::
+::: {#note-exp .note-body}
+
+Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-freiburg.de/Lehre/Courses/latest/material/optimierung-uebung2.zip) heruntergeladen werden.
+
+:::
+
+::::
+
+# Aufgabe 1
+
+Laden Sie das Bild puppy.png mit `PIL.Image.open` und lassen Sie es sich mit `plt.imshow` anzeigen. Das Bild ist offenbar etwas verrauscht. Wir würden gerne ein schöneres Bild rekonstruieren, was auf das folgende Optimierungsproblem hinausläuft:
+
+$$f(x) = \sum_{i,j}\left ( \sqrt{(x_{i,j} - y_{i,j})^2 +1} + \frac{1}{2} \sqrt{(x_{i,j} - x_{i+1,j})^2 + (x_{i,j} - x_{i,j+1})^2 +1} \right )$$
+
+wobei `y_ij` die gemessenen Bildpixel darstellen und `x_ij` die Bildpixel des verbesserten Bildes.
+
+- Berechnen Sie den Gradienten der Funktion. Denken Sie an die Kettenregel. Denken Sie bitte daran, dass im hinteren Teil (smoothness term) der Pixel x_1,2 in mehreren Summanden vorkommt, nämlich für `i=1, j=2` und `i=0, j=2`. Das gleiche gilt in y - Richtung.
+- Optimieren Sie die Funktion mit Gradientenabstieg. Starten Sie mit dem Eingangsbild als Startpunkt, also `x=y` (kopieren Sie das Eingangsbild am besten). Optimieren Sie für 200 Iterationen. Bestimmen Sie die Schrittweite wieder mit Backtracking Line Search. Speichern Sie die gewählte Schrittweite bei jeder Iteration und lassen Sie sich die Schrittweiten über die Iterationen später anzeigen. Verfolgen Sie auch die Konvergenz (also den Funktionswert über die Iterationen) und schauen Sie, wie sich die Lösung `x` in Form des Bildes über die Iterationen verändert.
+
+
+# Aufgabe 2
+
+Nun sollen Sie eines der komplexeren, von der `Scipy Optimize` Bibliothek zur Verfügung gestellten Verfahren ausprobieren. Finden Sie dazu zunächst online heraus, wie Sie die Funktion und ihren Gradienten übergeben können und welche Verfahren die Bibliothek anbietet. Stöbern Sie ruhig eine Weile. Bedenken Sie, dass wir es hier mit einem nichtlinearen Problem ohne Nebenbedingungen zu tun haben.
+
+- Verwenden Sie statt Gradientenabstieg das BFGS Verfahren.
+- Verwenden Sie `epsilon = 0.02` als Toleranz
+- Vergleichen Sie die Anzahl der Funktionsauswertungen und die finale Energie (`f(x)`) mit Ihrem Verfahren aus Aufgabe 1.
+
+More info at:
+- [Hinweis 1](https://scipy-lectures.org/advanced/mathematical_optimization/index.html#newton-and-quasi-newton-methods)
+- [Hinweis 2](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.optimize.minimize.html)
+- [Hinweis 3](https://stackoverflow.com/questions/37734430/how-to-use-scipy-optimize-minimize-function-when-you-want-to-compute-gradient-al)
+
+Implementieren Sie dabei alle Stub-Methoden definiert in `part1.py`. Die Signaturen von diesen Methoden dürfen nicht geändert werden, weil die Abgaben demnächst mit Hilfe von automatisierten Tests evaluiert werden.
+
+# Aufgabe 3
+
+In dieser Übung sollen Sie ein Least-Squares Optimierungsproblem lösen, indem Sie eine eindiminsionale Kurve an die Datenpunkte anpassen.
+
+Die Datenpunkte `x_values`, `h_values` finden Sie in der Datei `part2.py`.
+Visualizieren Sie diese mit `matplotlib`.
+
+Die Zielfunktion hat die Form $$y=p_1e^{p_2x}$$.
+Sie sollen das Gauss-Newton-Verfahren anwenden, um die optimalen Werte für die Parameter $$p_1$$ und $$p_2$$ zu finden.
+
+In jeder Iteration ist ein lineares Gleichungssystem zu lösen.
+Dafür können Sie die `numpy.linalg.solve` Funktion verwenden.
+`[1, 1]` ist ein guter Startpunkt für diese Aufgabe. Brechen Sie die Iterationen ab, sobald die Abbruchbedingung $$||x_{k+1}-x_k||_2^2<\epsilon$$ mit $$\epsilon=10^{-4}$$ erfüllt ist.
