@@ -4,6 +4,23 @@ title: "Aufgabenblatt 1: Gradientenverfahren"
 
 ---------------------------------
 
+
+:::: {#explaining .message-box }
+
+::: {#note-exp .note-header}
+```{r, include=knitr::is_html_output(), echo=FALSE,}
+knitr::include_graphics("figures/infoicon.svg")
+```
+**Note**
+:::
+::: {#note-exp .note-body}
+
+Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-freiburg.de/Lehre/Courses/latest/material/optimierung-uebung1.zip) heruntergeladen werden.
+
+:::
+
+::::
+
 # Aufgabe 1 - Installation und Python Einführung
 
 ### Setup
@@ -47,8 +64,35 @@ Hier ist eine Übersicht für Pycharm: https://www.jetbrains.com/help/pycharm/co
 ### Einführung
 
 Arbeiten Sie die Datei PythonIntroduction durch.
-Machen Sie sich mit der Syntax von Python vertraut.
-Recherchieren Sie insbesondere wie Sie die üblichen Operationen der linearen Algebra (z.B. Matrix-Vektor-Multiplikationen, inverse Matrizen, Eigenwertzerlegung) mit Hilfe von Numpy umsetzen können.
-Finden Sie heraus wie Sie Daten in Python mit Matplotlib visualisieren können (z.B. pyplot).
-Schauen Sie sich außerdem die Dokumentation von dem Scipy Optimierungsmodul an (https://docs.scipy.org/doc/scipy/reference/optimize.html).
-Auf die Funktionalität der Toolbox werden wir in späteren Übungen noch zurückkommen.
+
+- Machen Sie sich mit der Syntax von Python vertraut.
+- Recherchieren Sie insbesondere wie Sie die üblichen Operationen der linearen Algebra (z.B. Matrix-Vektor-Multiplikationen, inverse Matrizen, Eigenwertzerlegung) mit Hilfe von Numpy umsetzen können.
+- Finden Sie heraus wie Sie Daten in Python mit Matplotlib visualisieren können (z.B. pyplot).
+- Schauen Sie sich außerdem die Dokumentation von dem Scipy Optimierungsmodul an (https://docs.scipy.org/doc/scipy/reference/optimize.html). Auf die Funktionalität der Toolbox werden wir in späteren Übungen noch zurückkommen.
+
+
+# Aufgabe 2
+
+Minimieren Sie die Funktion:
+
+$$f(x) = \frac{1}{4}x^4 + 2x^3 - 3x - 4$$
+
+- Visualisieren Sie die Funktion. Ist sie konvex?
+- Berechnen Sie den Gradienten.
+- Optimieren Sie die Funktion mit Gradientenabstieg. Benutzen Sie den zuvor analytisch berechneten Gradienten in der Implementierung. Verwenden Sie bitte Ihre eigene Implementierung und keine Funktion aus der Optimization Toolbox. Probieren Sie verschiedene Startpunkte aus. Implementieren Sie Backtracking Line Search zur Bestimmung der Schrittweite.
+- Visualisieren Sie, was während der Optimierung geschieht. Für diese 1D-Funktion geht dies sehr schön, bei hochdimensionalen Problemen aus der Praxis nicht mehr.
+
+Nutzen sie hierzu die Stub-Methoden in der Datei `ex2.py`.
+
+## Aufgabe 3
+
+Minimieren Sie die zweidimensionale Funktion:
+
+$$f(x1, x2) = 2x^{2}_{1} + 2x^{2}_{2} + 3x_{1}x_2 - x_1 + x_2$$
+
+- Visualisieren Sie die Isolinien der Funktion mithilfe von contour. Ist die Funktion konvex?
+- Berechnen Sie den Gradienten.
+- Optimieren Sie die Funktion mit Gradientenabstieg. Verwenden Sie bitte Ihre eigene Implementierung.
+- Optimieren Sie die Funktion analytisch. Stimmt Ihre numerische Lösung mit dem Minimum überein?
+
+Nutzen sie hierzu die Stub-Methoden in der Datei `ex3.py`.

@@ -1,7 +1,7 @@
-name: "BioinformaticsII"
+name: "Optimierung"
 output_dir: "docs"
 author: "@CARD"
-date: "SS2024"
+date: "WS2024"
 language: en
 output:
   html_document:
