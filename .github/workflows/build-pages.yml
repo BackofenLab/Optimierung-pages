@@ -1,7 +1,7 @@
 name: build-github-pages
 env:
   GITHUB_ACTOR: BackofenLab
-  GITHUB_REPOSITORY: BackofenLab/V_RNA-pages
+  GITHUB_REPOSITORY: BackofenLab/Optimierung-pages
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
