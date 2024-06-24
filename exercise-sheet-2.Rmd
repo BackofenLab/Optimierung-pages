@@ -55,8 +55,8 @@ In dieser Übung sollen Sie ein Least-Squares Optimierungsproblem lösen, indem 
 Die Datenpunkte `x_values`, `h_values` finden Sie in der Datei `part2.py`.
 Visualizieren Sie diese mit `matplotlib`.
 
-Die Zielfunktion hat die Form $$y=p_1e^{p_2x}$$.
-Sie sollen das Gauss-Newton-Verfahren anwenden, um die optimalen Werte für die Parameter $$p_1$$ und $$p_2$$ zu finden.
+Die Zielfunktion hat die Form $y=p_1e^{p_2x}$.
+Sie sollen das Gauss-Newton-Verfahren anwenden, um die optimalen Werte für die Parameter $p_1$ und $p_2$ zu finden.
 
 In jeder Iteration ist ein lineares Gleichungssystem zu lösen.
 Dafür können Sie die `numpy.linalg.solve` Funktion verwenden.
