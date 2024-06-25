@@ -96,10 +96,10 @@ Alles zusammen führt uns zu folgenden nichtlinearen Programmen:
 **Variation 1**
 $$
 \begin{aligned}
-\min \quad & V(y, z) & \tag{4a} \\
-\text{s.t.} \quad & (y_1, z_1) = (-2, 1), & \tag{4b} \\
-& (y_N, z_N) = (2, 1), & \tag{4c} \\
-& z_i \geq 0, \quad 1 \leq i \leq N & \tag{4d}
+\min \quad & V(y, z) \\
+\text{s.t.} \quad & (y_1, z_1) = (-2, 1), \\
+& (y_N, z_N) = (2, 1),  \\
+& z_i \geq 0, \quad 1 \leq i \leq N
 \end{aligned}
 $$
 
