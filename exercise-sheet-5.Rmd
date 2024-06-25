@@ -64,7 +64,7 @@ $$
 $$
 
 
-```{r, echo=FALSE, fig.show='hold', out.width='50%', fig.align='center'}
+```{r, echo=FALSE, out.width='49%', out.height='20%', fig.align='center', fig.cap='Abbildung 1 - Beispiel einer durch Lösung von Problem (2) erhaltenen Rekonstruktion. Links: Verrauschtes Original Y. Rechts: Rekonstruierte Version X mit $\\alpha = 0.5$.'}
 knitr::include_graphics(c("figures/sheet-5/p1.png", "figures/sheet-5/p2.png"))
 ```
 
