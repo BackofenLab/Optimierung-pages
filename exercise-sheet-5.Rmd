@@ -96,7 +96,7 @@ Alles zusammen führt uns zu folgenden nichtlinearen Programmen:
 **Variation 1**
 $$
 \begin{aligned}
-\min \quad & V(y, z) \\
+\underset{y,z \in \mathbb{R}^N}{\text{min}} \quad & V(y, z) \\
 \text{s.t.} \quad & (y_1, z_1) = (-2, 1), \\
 & (y_N, z_N) = (2, 1),  \\
 & z_i \geq 0, \quad 1 \leq i \leq N
@@ -105,12 +105,14 @@ $$
 
 **Variation 2**
 $$
+\begin{equation}
 \begin{aligned}
-\min \quad & V(y, z) & \tag{5a} \\
-\text{s.t.} \quad & (y_1, z_1) = (-2, 1), & \tag{5b} \\
-& (y_N, z_N) = (2, 1), & \tag{5c} \\
-& z_i \geq -y_i^2, \quad 1 \leq i \leq N & \tag{5d}
+\underset{y,z \in \mathbb{R}^N}{\text{min}} \quad & V(y, z)\\
+\text{s.t.} \quad & (y_1, z_1) = (-2, 1), \\
+& (y_N, z_N) = (2, 1), \\
+& z_i \geq -y_i^2, \quad 1 \leq i \leq N
 \end{aligned}
+\end{equation}
 $$
 
 Beachten Sie, dass es sich bei NLP (4) um ein konvexes QP handelt (wieso?), während (5) ein nichtkonvexes NLP ist. In `chain.py` finden Sie eine vollständige Implementierung beider Probleme hier von. Abbildung 2 zeigt die Lösungen der beiden Variationen. Für Variation 2 sind zwei mögliche Lösungen dargestellt.
