@@ -185,7 +185,10 @@ wobei $ x_k $ der Zustand zum diskreten Zeitpunkt $ k $, $ k = 0, \ldots, N $, u
 X := \begin{bmatrix} x_0 & \ldots & x_N \end{bmatrix} \in \mathbb{R}^{2 \times (N+1)} \quad \text{und} \quad U := \begin{bmatrix} u_0 & \ldots & u_{N-1} \end{bmatrix} \in \mathbb{R}^{1 \times N}
 \]
 
-zusammen. Unser Ziel ist es nun, das Pendel aus seiner herabhängenden Ruhelage $ x_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T $ zum Zeitpunkt $ k = 0 $ in die aufrechte stehende Position $ x_N = \begin{bmatrix} 0 & 0 \end{bmatrix}^T $ zum Zeitpunkt $ k = N $ zu schwingen. Dabei wollen wir den Steuerungsaufwand $ L(U) := \sum_{k=0}^{N-1} u_k^2 $ minimieren.
+zusammen.
+
+Unser Ziel ist es nun, das Pendel aus seiner herabhängenden Ruhelage $x_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = 0$ in die aufrechte stehende Position $x_N = \begin{bmatrix} 0 & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = N$ zu schwingen.
+Dabei wollen wir den Steuerungsaufwand $ L(U) := \sum_{k=0}^{N-1} u_k^2 $ minimieren.
 
 **Aufgaben:**
 
@@ -200,7 +203,15 @@ zusammen. Unser Ziel ist es nun, das Pendel aus seiner herabhängenden Ruhelage 
 
 # Aufgabe 3: Optimalsteuerung mit acados (Bonus)
 
-In dieser Aufgabe lernen wir das open-source Softwarepaket acados kennen. acados bietet eine Sammlung effizienter Algorithmen, die auf das Lösen von Optimalsteuerungsproblemen spezialisiert sind. Dafür implementiert acados ein SQP-Verfahren sowie numerische Integratoren für Differentialgleichungen. Zum Lösen der im SQP-Verfahren anfallenden QP wird auf moderne open-source QP-Löser zurückgegriffen, z.B. HP ipm, qpOASES, OSQP, DQAP. Optimalsteuerungsprobleme werden mit
+In dieser Aufgabe lernen wir das open-source Softwarepaket acados kennen.
+acados bietet eine Sammlung effizienter Algorithmen, die auf das Lösen von Optimalsteuerungsproblemen spezialisiert sind.
+Dafür implementiert acados ein SQP-Verfahren sowie numerische Integratoren für Differentialgleichungen.
+Zum Lösen der im SQP-Verfahren anfallenden QP wird auf moderne open-source QP-Löser zurückgegriffen, z.B. HP ipm, qpOASES, OSQP, DQAP.
+Optimalsteuerungsprobleme werden mit
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $ x_0 = \left[\frac{3\pi}{4} \quad 0\right]^T $ und ohne Steuerung, $ u_k = 0 \forall k $.'}
+knitr::include_graphics("figures/sheet-5/p6.png")
+```
 
 CasADi's symbolische Variablen definieren, welches auch zur Berechnung von Ableitungen verwendet wird. Für die grundlegenden Operationen der linearen Algebra (z.B. Matrix-Matrix-Multiplikationen) wird BLASFEO verwendet. Auf Grundlage der erwähnten Komponenten generiert acados dann C-Code, welcher ohne externe Abhängigkeiten auskommt. Dieser kann insbesondere auch auf eingebetteten Systemen ausgeführt werden, was die Optimalsteuerung technischer Systeme in Echtzeit ermöglicht. Unter folgenden Links finden Sie weitere Informationen:
 
