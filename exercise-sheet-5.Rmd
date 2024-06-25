@@ -158,7 +158,3 @@ mit $ r_i(R) = R $ für $ i \in \{1, 2, 3\} $ und $ r_i(R) = 2R $ für $ i \in \
 ---
 
 # Aufgabe 2 - Optimale Steuerung eines Pendels
-
-```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $ x_0 = \left[\frac{3\pi}{4} \quad 0\right]^T $ und ohne Steuerung, $ u_k = 0 \forall k $.'}
-knitr::include_graphics("figures/sheet-5/p5.png")
-```
