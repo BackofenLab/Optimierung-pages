@@ -227,7 +227,7 @@ Dafür implementiert acados ein SQP-Verfahren sowie numerische Integratoren für
 Zum Lösen der im SQP-Verfahren anfallenden QP wird auf moderne open-source QP-Löser zurückgegriffen, z.B. HP ipm, qpOASES, OSQP, DQAP.
 Optimalsteuerungsprobleme werden mit
 
-```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $ x_0 = \left[\frac{3\pi}{4} \quad 0\right]^T $ und ohne Steuerung, $ u_k = 0 \forall k $.'}
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $x_0 = \\left[\\frac{3\\pi}{4} \\quad 0\\right]^T$ und ohne Steuerung, $u_k = 0 \\forall k$.'}
 knitr::include_graphics("figures/sheet-5/p6.png")
 ```
 
