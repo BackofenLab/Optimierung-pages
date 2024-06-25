@@ -72,27 +72,29 @@ $$
 knitr::include_graphics(c("figures/sheet-5/p1.png", "figures/sheet-5/p2.png"))
 ```
 
-formuliert werden. Hierbei haben wir "Phantompixel" $ X_{r+1,j} $ und $ X_{i,c+1} $ angenommen, mit $ X_{r+1,j} = X_{r,j} $ und $ X_{i,c+1} = X_{i,c} $, um das Definieren der Summenindizes zu erleichtern.
-Abbildung 1 zeigt ein Beispiel einer so erhaltenen Rekonstruktion mit $ \alpha = 0.5 $.
+formuliert werden. Hierbei haben wir "Phantompixel" $X_{r+1,j}$ und $X_{i,c+1}$ angenommen, mit $X_{r+1,j} = X_{r,j}$ und $X_{i,c+1} = X_{i,c}$, um das Definieren der Summenindizes zu erleichtern.
+Abbildung 1 zeigt ein Beispiel einer so erhaltenen Rekonstruktion mit $\alpha = 0.5$.
 
 ---
 
 ## Beispiel 2: Bildrekonstruktion
 
-Wir betrachten eine Kette, bestehend aus $ N $ Massepunkten, die durch $ N-1 $ Federn verbunden sind.
-Die Massepunkte haben Masse $ m $ und Positionen $ (y_i, z_i) $, mit $ {i = 0, \ldots, N} $.
-Die beiden äußersten Massepunkte sind fixiert, $ (y_1, z_1) = (-2, 1) $ sowie $ (y_N, z_N) = (2, 1) $.
-Wir wollen eine Ruheposition der Kette finden, was der Minimierung der Kettenenergie $ V(y, z) $ entspricht.
+Wir betrachten eine Kette, bestehend aus $N$ Massepunkten, die durch $N-1$ Federn verbunden sind.
+Die Massepunkte haben Masse $m$ und Positionen $(y_i, z_i) $, mit ${i = 0, \ldots, N}$.
+Die beiden äußersten Massepunkte sind fixiert, $(y_1, z_1) = (-2, 1)$ sowie $(y_N, z_N) = (2, 1)$.
+Wir wollen eine Ruheposition der Kette finden, was der Minimierung der Kettenenergie $V(y, z)$ entspricht.
 Diese setzt sich zusammen aus der Lageenergie der Massen sowie der potentiellen Energie der Federn:
 
 $$
 V(y, z) = \sum_{i=0}^{N} mgz_i + \frac{1}{2} \sum_{i=0}^{N-1} D \left( (y_i - y_{i+1})^2 + (z_i - z_{i+1})^2 \right),
 $$
 
-wobei $ g $ die Erdbeschleunigung ist und $ D $ die Federkonstante. Wir führen nun zwei Variationen dieses Problems ein.
+wobei $g$ die Erdbeschleunigung ist und $D$ die Federkonstante.
+Wir führen nun zwei Variationen dieses Problems ein.
 
-1. Unterhalb der Kette befindet sich eine ebene Fläche, die die Kette nach unten beschränkt. Dies drücken wir durch die Nebenbedingung $ z_i \geq 0 $ aus.
-2. Unterhalb der Kette befindet sich ein Hügel. Diesen drücken wir durch die Nebenbedingung $ z_i \geq -y_i^2 $ aus.
+1. Unterhalb der Kette befindet sich eine ebene Fläche, die die Kette nach unten beschränkt.
+Dies drücken wir durch die Nebenbedingung $z_i \geq 0$ aus.
+2. Unterhalb der Kette befindet sich ein Hügel. Diesen drücken wir durch die Nebenbedingung $z_i \geq -y_i^2$ aus.
 
 Alles zusammen führt uns zu folgenden nichtlinearen Programmen:
 
