@@ -217,3 +217,82 @@ Finden Sie stattdessen eine Umformulierung dieser Nebenbedingung.
 Verwenden Sie $u_{\text{max}} = 0.13$.
 
 ---
+
+
+# Aufgabe 3: Optimalsteuerung mit acados (Bonus)
+
+In dieser Aufgabe lernen wir das open-source Softwarepaket acados kennen.
+acados bietet eine Sammlung effizienter Algorithmen, die auf das Lösen von Optimalsteuerungsproblemen spezialisiert sind.
+Dafür implementiert acados ein SQP-Verfahren sowie numerische Integratoren für Differentialgleichungen.
+Zum Lösen der im SQP-Verfahren anfallenden QP wird auf moderne open-source QP-Löser zurückgegriffen, z.B. HP ipm, qpOASES, OSQP, DQAP.
+Optimalsteuerungsprobleme werden mit
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $ x_0 = \left[\frac{3\pi}{4} \quad 0\right]^T $ und ohne Steuerung, $ u_k = 0 \forall k $.'}
+knitr::include_graphics("figures/sheet-5/p6.png")
+```
+
+CasADi's symbolische Variablen definieren, welches auch zur Berechnung von Ableitungen verwendet wird. Für die grundlegenden Operationen der linearen Algebra (z.B. Matrix-Matrix-Multiplikationen) wird BLASFEO verwendet. Auf Grundlage der erwähnten Komponenten generiert acados dann C-Code, welcher ohne externe Abhängigkeiten auskommt. Dieser kann insbesondere auch auf eingebetteten Systemen ausgeführt werden, was die Optimalsteuerung technischer Systeme in Echtzeit ermöglicht. Unter folgenden Links finden Sie weitere Informationen:
+
+- Dokumentation: [https://docs.acados.org/](https://docs.acados.org/)
+- Installation: [https://docs.acados.org/installation/](https://docs.acados.org/installation/)
+- Python-Interface Installation: [https://docs.acados.org/python_interface/](https://docs.acados.org/python_interface/)
+- acados OCP-Formulierung: [https://github.com/acados/acados/blob/master/docs/problem_formulation/ocp_mex.pdf](https://github.com/acados/acados/blob/master/docs/problem_formulation/ocp_mex.pdf)
+- acados Forum: [https://discourse.acados.org](https://discourse.acados.org)
+
+### Pendel auf einem Wagen
+
+Als Beispielproblem betrachten wir ein Pendel, das auf einem Wagen befestigt ist, siehe Abb. 5. Der Mittelpunkt des Wagens hat die horizontale Position $p_x$, welche wir durch Ausüben einer Kraft $ F $ beeinflussen können.
+Die Auslenkung des Pendels, welches die Länge $l$ hat, ist durch den Winkel $\beta$ beschrieben.
+Der Wagen hat die Masse $M$, und an der Spitze des Pendels ist ein Ball mit Masse $m$ befestigt.
+Auf die Pendelmasse wirkt außerdem die Erdbeschleunigung $g$.
+Die horizontale Geschwindigkeit des Wagens ist $v_x$ und die Winkelgeschwindigkeit des Pendels ist $\omega$.
+Durch Zusammenfassen der (Winkel)positionen und -geschwindigkeiten im Zustandsvektor $x$ können wir das System durch folgende Differentialgleichung beschreiben:
+
+$$
+\dot{x} =
+\begin{bmatrix}
+v_x \\
+\omega
+\end{bmatrix} =
+\begin{bmatrix}
+-m \omega^2 \sin \theta + m \omega \cos \theta \sin \theta + F \\
+-\frac{m \omega^2 \cos^2 \theta + M (1 - \cos^2 \theta) + \frac{(m + M) g \sin \theta}{l (1 - F \cos \theta)}}{M + \frac{F \cos^2 \theta}{m}}
+\end{bmatrix}.
+$$
+
+Unser Ziel ist es nun das Pendel aus einer herabhängenden Position in eine aufrechte Position ($\beta = 0$) zu schwingen, während der Wagen am Ende die Position $p_x = 0$ haben soll.
+Unser Steuerungseingang ist hierbei $u = F$. Dies soll innerhalb des Zeitintervalls $t \in [0, T]$ passieren.
+Wir drücken dies als das folgende Optimalsteuerungsproblem aus,
+
+$$
+\min_{x(\cdot), u(\cdot)} \int_0^T \frac{1}{2} x(t)^T Q x(t) + \frac{1}{2} u(t)^T R u(t) dt + \frac{1}{2} x(T)^T Q_e x(T)
+$$
+
+unter den Nebenbedingungen
+
+$$
+\begin{aligned}
+x(0) &= x_0, \\
+\dot{x}(t) &= f(x(t), u(t)), \quad t \in [0, T], \\
+-u_{\text{max}} &\leq u(t) \leq u_{\text{max}}, \quad t \in [0, T].
+\end{aligned}
+$$
+
+wo bei $\hat{x}_0$ der gegebene initiale Zustand des Systems ist.
+Anders als wir es bisher in der Vorlesung gesehen haben, sind in dem obigen Optimalsteuerungsproblem die Entscheidungsvariablen $x(\cdot)$ und $u(\cdot)$ Funktionen der Zeit.
+Es handelt es sich deshalb nicht um ein NLP, und wir können es auch nicht ohne weiteres auf einem Computer repräsentieren.
+Hierfür muss es erst durch numerische Integration in der Zeit diskretisiert werden, wie wir es bereits in der vorherigen Aufgabe mit dem RK4-Verfahren gemacht haben.
+Da allerdings acados dies für uns übernimmt und eine Vielzahl effizienter Integrationsverfahren hierfür bereitstellt, übergeben wir das Optimalsteuerungsproblem in kontinuierlicher Zeit.
+
+**Aufgaben:**
+
+1. Installieren Sie acados sowie das zugehörige Python-Interface.
+Die Links dafür sind weiter oben gegeben. Versichern Sie sich, dass Ihre Installation funktioniert, indem Sie das Minimalbeispiel `minimal_example_ocp.py` ausführen (vgl. Installationsanleitung Python-Interface).
+2. Das Optimalsteuerungsproblem ist für Sie bereits in `cartpole.py` implementiert. Machen Sie sich kurz mit dem Code vertraut und führen Sie ihn dann aus.
+3. Wir wollen eine zusätzliche Nebenbedingung auf die Geschwindigkeit $v_x$ einführen. Diese ist
+
+$$
+-u_{\text{max}} \leq u(t) \leq u_{\text{max}}, \quad t \in [0, T],
+$$
+
+mit $v_x = 5 \, \text{m/s}$. Erweitern Sie `minimal_example_ocp.py` um diese Nebenbedingung, und lösen Sie das Optimalsteuerungsproblem erneut.
