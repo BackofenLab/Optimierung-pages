@@ -4,6 +4,15 @@ title: "Arbeitsblatt 5: Nichtlineare Programmierung und CasADi"
 
 ---------------------------------
 
+```{r, echo=FALSE, results='asis'}
+cat('''
+<script type="text/javascript">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } },
+  SVG: { font: "STIX-Web" }
+});
+</script>
+''')
 
 :::: {#explaining .message-box }
 
@@ -245,7 +254,7 @@ knitr::include_graphics("figures/sheet-5/p6.png")
 - [acados OCP-Formulierung](https://github.com/acados/acados/blob/master/docs/problem_formulation/ocp_mex.pdf)
 - [acados Forum](https://discourse.acados.org)
 
-### Pendel auf einem Wagen
+**Pendel auf einem Wagen**
 
 Als Beispielproblem betrachten wir ein Pendel, das auf einem Wagen befestigt ist, siehe Abb. 5. Der Mittelpunkt des Wagens hat die horizontale Position $p_x$, welche wir durch Ausüben einer Kraft $F$ beeinflussen können.
 Die Auslenkung des Pendels, welches die Länge $l$ hat, ist durch den Winkel $\beta$ beschrieben.
