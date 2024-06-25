@@ -64,7 +64,7 @@ Wir haben ein verrauschtes schwarz-weiß Bild in Form der Matrix $Y \in \mathbb{
 Ziel ist es, eine weniger verrauschte Version $X \in \mathbb{R}^{r \times c}$ zu rekonstruieren. Dies kann als das unbeschränkte Optimierungsproblem formuliert werden.
 
 $$
-\min_{X \in \mathbb{R}^{r \times c}} \sum_{i=1}^r \sum_{j=1}^c \left( \sqrt{(X_{i,j} - Y_{i,j})^2 + 1} + \alpha \sqrt{(X_{i,j} - X_{i+1,j})^2 + (X_{i,j} - X_{i,j+1})^2 + 1} \right)
+\min_{X \in \mathbb{R}^{r \times c}} \sum_{i=1}^r \sum_{j=1}^c \left( \sqrt{(X_{i,j} - Y_{i,j})^2 + 1} + \alpha \sqrt{(X_{i,j} - X_{i+1,j})^2 + (X_{i,j} - X_{i,j+1})^2 + 1} \right)\tag{2}
 $$
 
 
