@@ -69,18 +69,22 @@ $$
 knitr::include_graphics(c("figures/sheet-5/p1.png", "figures/sheet-5/p2.png"))
 ```
 
-formuliert werden. Hierbei haben wir "Phantompixel" \( X_{r+1,j} \) und \( X_{i,c+1} = X_{i,c} \) angenommen, mit \( X_{r+1,j} = X_{r,j} \) und \( X_{i,c+1} = X_{i,c} \), um das Definieren der Summenindizes zu erleichtern.
+formuliert werden. Hierbei haben wir "Phantompixel" \( X_{r+1,j} \) und \( X_{i,c+1} \) angenommen, mit \( X_{r+1,j} = X_{r,j} \) und \( X_{i,c+1} = X_{i,c} \), um das Definieren der Summenindizes zu erleichtern.
 Abbildung 1 zeigt ein Beispiel einer so erhaltenen Rekonstruktion mit \( \alpha = 0.5 \).
 
 ---
 
 ## Beispiel 2: Bildrekonstruktion
 
-Wir betrachten eine Kette, bestehend aus \( N \) Massepunkten, die durch \( N-1 \) Federn verbunden sind. Die Massepunkte haben Masse \( m \) und Positionen \( (y_i, z_i) \), mit \( i = 0, \ldots, N \). Die beiden äußersten Massepunkte sind fixiert, \( (y_1, z_1) = (-2, 1) \) sowie \( (y_N, z_N) = (2, 1) \). Wir wollen eine Ruheposition der Kette finden, was der Minimierung der Kettenenergie \( V(y, z) \) entspricht. Diese setzt sich zusammen aus der Lageenergie der Massen sowie der potentiellen Energie der Federn:
+Wir betrachten eine Kette, bestehend aus \( N \) Massepunkten, die durch \( N-1 \) Federn verbunden sind.
+Die Massepunkte haben Masse \( m \) und Positionen \( (y_i, z_i) \), mit \( {i = 0, \ldots, N} \).
+Die beiden äußersten Massepunkte sind fixiert, \( (y_1, z_1) = (-2, 1) \) sowie \( (y_N, z_N) = (2, 1) \).
+Wir wollen eine Ruheposition der Kette finden, was der Minimierung der Kettenenergie \( V(y, z) \) entspricht.
+Diese setzt sich zusammen aus der Lageenergie der Massen sowie der potentiellen Energie der Federn:
 
-\[
+$$
 V(y, z) = \sum_{i=0}^{N} mgz_i + \frac{1}{2} \sum_{i=0}^{N-1} D \left( (y_i - y_{i+1})^2 + (z_i - z_{i+1})^2 \right),
-\]
+$$
 
 wobei \( g \) die Erdbeschleunigung ist und \( D \) die Federkonstante. Wir führen nun zwei Variationen dieses Problems ein.
 
@@ -90,24 +94,24 @@ wobei \( g \) die Erdbeschleunigung ist und \( D \) die Federkonstante. Wir füh
 Alles zusammen führt uns zu folgenden nichtlinearen Programmen:
 
 **Variation 1**
-\[
+$$
 \begin{aligned}
 \min \quad & V(y, z) & \tag{4a} \\
 \text{s.t.} \quad & (y_1, z_1) = (-2, 1), & \tag{4b} \\
 & (y_N, z_N) = (2, 1), & \tag{4c} \\
 & z_i \geq 0, \quad 1 \leq i \leq N & \tag{4d}
 \end{aligned}
-\]
+$$
 
 **Variation 2**
-\[
+$$
 \begin{aligned}
 \min \quad & V(y, z) & \tag{5a} \\
 \text{s.t.} \quad & (y_1, z_1) = (-2, 1), & \tag{5b} \\
 & (y_N, z_N) = (2, 1), & \tag{5c} \\
 & z_i \geq -y_i^2, \quad 1 \leq i \leq N & \tag{5d}
 \end{aligned}
-\]
+$$
 
 Beachten Sie, dass es sich bei NLP (4) um ein konvexes QP handelt (wieso?), während (5) ein nichtkonvexes NLP ist. In `chain.py` finden Sie eine vollständige Implementierung beider Probleme hier von. Abbildung 2 zeigt die Lösungen der beiden Variationen. Für Variation 2 sind zwei mögliche Lösungen dargestellt.
 
