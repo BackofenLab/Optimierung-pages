@@ -159,6 +159,14 @@ mit $ r_i(R) = R $ für $ i \in \{1, 2, 3\} $ und $ r_i(R) = 2R $ für $ i \in \
 
 # Aufgabe 2 - Optimale Steuerung eines Pendels
 
-```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $x_0 = \\left[\\frac{3\\pi}{4} \\quad 0\\right]^T$ und ohne Steuerung, $u_k = 0 \\forall k$.'}
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 4** - Links: Skizze des Pendels. Rechts: Trajektorie des Pendels mit Initialzustand $x_0 = \\left[\\frac{3\\pi}{4} \\quad 0\\right]^T$ und ohne Steuerung, $u_k = 0 \\forall k$.'}
 knitr::include_graphics("figures/sheet-5/p5.png")
 ```
+
+
+Wir betrachten ein Pendel.
+Dessen Position ist durch den Winkel $\theta$ eindeutig bestimmt. Dabei entspricht $\theta = \pi$ der Position, in der es gerade nach unten hängt.
+Eine Illustration finden Sie in Abbildung 4.
+In der Aufhängung des Pendels sitzt ein Motor, sodass es anhand eines Drehmoments $u$ gesteuert werden kann.
+Die Winkelgeschwindigkeit ist $\omega = \dot{\theta}$.
+Fassen wir Position und Geschwindigkeit im Zustandsvektor $x = \begin{bmatrix} \theta \\ \omega \end{bmatrix}^T$ zusammen, können wir die Dynamik des Pendels durch die gewöhnliche Differentialgleichung (ordinary differential equation, ODE)
