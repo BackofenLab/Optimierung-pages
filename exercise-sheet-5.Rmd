@@ -163,10 +163,16 @@ mit $ r_i(R) = R $ für $ i \in \{1, 2, 3\} $ und $ r_i(R) = 2R $ für $ i \in \
 knitr::include_graphics("figures/sheet-5/p5.png")
 ```
 
-
 Wir betrachten ein Pendel.
 Dessen Position ist durch den Winkel $\theta$ eindeutig bestimmt. Dabei entspricht $\theta = \pi$ der Position, in der es gerade nach unten hängt.
 Eine Illustration finden Sie in Abbildung 4.
 In der Aufhängung des Pendels sitzt ein Motor, sodass es anhand eines Drehmoments $u$ gesteuert werden kann.
 Die Winkelgeschwindigkeit ist $\omega = \dot{\theta}$.
 Fassen wir Position und Geschwindigkeit im Zustandsvektor $x = \begin{bmatrix} \theta \\ \omega \end{bmatrix}^T$ zusammen, können wir die Dynamik des Pendels durch die gewöhnliche Differentialgleichung (ordinary differential equation, ODE)
+
+
+$$
+\dot{x} = \begin{bmatrix} \dot{\theta} \\
+\dot{\omega} \end{bmatrix} = f(x, u) := \begin{bmatrix} \omega \\
+\sin \theta + u \end{bmatrix}
+$$
