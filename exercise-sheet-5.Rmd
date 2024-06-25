@@ -4,16 +4,6 @@ title: "Arbeitsblatt 5: Nichtlineare Programmierung und CasADi"
 
 ---------------------------------
 
-```{r, echo=FALSE, results='asis'}
-cat('''
-<script type="text/javascript">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } },
-  SVG: { font: "STIX-Web" }
-});
-</script>
-''')
-
 :::: {#explaining .message-box }
 
 ::: {#note-exp .note-header}
@@ -48,6 +38,7 @@ Nichtlineare Programme werden in `CasADi` in der Standardform
 & & x_{\text{lb}} \leq x \leq x_{\text{ub}}, \\
 & & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}
 \end{aligned}
+(\#eq:1)
 \end{equation}
 
 formuliert, wobei die vektorwertige Funktion $g : \mathbb{R}^n \rightarrow \mathbb{R}^m$ zusammen mit den Begrenzungen $g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m$ die nichtlinearen Nebenbedingungen ausdrückt.
