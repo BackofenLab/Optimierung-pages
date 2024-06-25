@@ -37,17 +37,34 @@ $$
 & & f(x) \\
 & \text{s.t.}
 & & x_{\text{lb}} \leq x \leq x_{\text{ub}}, \\
-& & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}.
+& & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}
 \end{aligned}
 $$
 
-formuliert, wobei die vektorwertige Funktion \( g : \mathbb{R}^n \rightarrow \mathbb{R}^m \) zusammen mit den Begrenzungen \( g_{\text{lb}}, g_{\text{ub}} \in \mathbb{R}^m \) die nichtlinearen Nebenbedingungen ausdrückt.
+formuliert, wobei die vektorwertige Funktion \( g : \mathbb{R}^n \rightarrow \mathbb{R}^m \) zusammen mit den Begrenzungen \( g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m \) die nichtlinearen Nebenbedingungen ausdrückt.
 Für dieses Übungsblatt werden wir die Hilfsumgebung [Opti Stack](https://web.casadi.org/docs/#document-opti) nutzen, welche eine Syntax bietet, die sehr nah an die Papiernotation angelehnt ist. Die so formulierten NLP werden automatisch in die Standardform (1) übertragen.
 
 **Aufgaben:**
+
 1. Installieren Sie CasADi. Wenn Sie Anaconda nutzen, aktivieren Sie zunächst das Environment, in dem Sie installieren wollen.
 Installieren Sie dort zunächst pip (`conda install pip`), gefolgt von der CasADi-Installation mit `pip install casadi`.
 Wenn Sie standardmäßig pip verwenden, können Sie CasADi direkt in Ihr gewünschtes Environment installieren.
 
 2. Machen Sie sich mit den bereitgestellten Codebeispielen vertraut und führen diese aus. `puppy.py` enthält eine Implementierung der Bildrekonstruktion, die Sie bereits aus Übung 2 kennen. `chain.py` implementiert eine hängende Kette.
 Beide Beispiele werden in den folgenden Abschnitten kurz vorgestellt.
+
+
+## Beispiel 1: Bildrekonstruktion
+
+Wir haben ein verrauschtes schwarz-weiß Bild in Form der Matrix \( Y \in \mathbb{R}^{r \times c} \) gegeben, sodass die Elemente die Intensität der einzelnen Pixel definieren, \( 0 \leq Y_{i,j} \leq 256 \).
+Ziel ist es, eine weniger verrauschte Version \( X \in \mathbb{R}^{r \times c} \) zu rekonstruieren. Dies kann als das unbeschränkte Optimierungsproblem formuliert werden.
+
+$$
+\min_{X \in \mathbb{R}^{r \times c}} \sum_{i=1}^r \sum_{j=1}^c \left( \sqrt{(X_{i,j} - Y_{i,j})^2 + 1} + \alpha \left( \sqrt{(X_{i,j} - X_{i+1,j})^2 + 1} + \sqrt{(X_{i,j} - X_{i,j+1})^2 + 1} \right) \right)
+$$
+
+
+```{r, echo=FALSE, fig.show='hold', out.width='50%', fig.align='center', fig.cap="Abbildung 1 - Beispiel einer durch Lösung von Problem (2) erhaltenen Rekonstruktion. Links: Verrauschtes Original Y. Rechts: Rekonstruierte Version X mit \( \alpha = 0.5 \)."}
+knitr::include_graphics(c("p1.png", "p2.png"))
+```
+
