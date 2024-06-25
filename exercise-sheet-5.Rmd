@@ -193,3 +193,18 @@ X := \begin{bmatrix} x_0 & \ldots & x_N \end{bmatrix} \in \mathbb{R}^{2 \times (
 $$
 
 zusammen.
+
+
+Unser Ziel ist es nun, das Pendel aus seiner herabhängenden Ruhelage $x_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = 0$ in die aufrechte stehende Position $x_N = \begin{bmatrix} 0 & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = N$ zu schwingen.
+Dabei wollen wir den Steuerungsaufwand $ L(U) := \sum_{k=0}^{N-1} u_k^2 $ minimieren.
+
+**Aufgaben:**
+
+1. Formulieren Sie unser Optimalsteuerungsproblem als nichtlineares Programm. Dabei sollen $ x_0, \ldots, x_N $ und $ u_0, \ldots, u_{N-1} $ die Entscheidungsvariablen sein. Die Nebenbedingungen sind die Dynamik, sowie die Start- und Zielposition.
+2. Diskutieren Sie kurz, ob das Problem konvex ist.
+3. Benutzen Sie das bereitgestellte Template, um das NLP mit CasADi und IPOPT zu lösen. Erstellen Sie Plots der optimalen Trajektorien von $ \theta $, $ \omega $ und $ u $, mit der diskreten Zeit $ k $ auf der $ x $-Achse. Sie können Ihre Lösung außerdem mit der bereitgestellten Animation (pendulum.gif) vergleichen.
+4. Wir führen nun eine zusätzliche Beschränkung der Steuerung ein. Zu allen Zeitpunkten soll gelten: $ |u_k| \leq u_{\text{max}} $. Diskutieren Sie kurz, wie sich der optimale Wert der Zielfunktion dadurch verändert.
+5. Erweitern Sie Ihre NLP Formulierung um die zusätzliche Beschränkung. Beachten Sie, dass Sie hierbei die Betragsfunktion $ | \cdot | $ nicht verwenden sollten, da diese an der Stelle 0 nicht differenzierbar ist. Dies kann zu Problemen führen. Finden Sie stattdessen eine Umformulierung dieser Nebenbedingung.
+6. Erweitern Sie Ihre Implementierung um die zusätzliche Nebenbedingung. Verwenden Sie $ u_{\text{max}} = 0.13 $.
+
+---
