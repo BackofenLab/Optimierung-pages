@@ -31,14 +31,15 @@ sADi diese an verschiedene (alleinstehende) Solver übergeben. Der open-source S
 nichtlineares Innere-Punkt-Verfahren, ist in einer CasADi-Installation bereits enthalten.
 Nichtlineare Programme werden in CasADi in der Standardform
 
-\begin{align}
+\begin{equation}
+\begin{aligned}
 & \min_{x \in \mathbb{R}^n}
 & & f(x) \\
 & \text{s.t.}
 & & x_{\text{lb}} \leq x \leq x_{\text{ub}}, \\
 & & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}
-\end{align}
-
+\end{aligned}
+\end{equation}
 formuliert, wobei die vektorwertige Funktion \( g : \mathbb{R}^n \rightarrow \mathbb{R}^m \) zusammen mit den Begrenzungen \( g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m \) die nichtlinearen Nebenbedingungen ausdrückt.
 Für dieses Übungsblatt werden wir die Hilfsumgebung [Opti Stack](https://web.casadi.org/docs/#document-opti) nutzen, welche eine Syntax bietet, die sehr nah an die Papiernotation angelehnt ist. Die so formulierten NLP werden automatisch in die Standardform (1) übertragen.
 
