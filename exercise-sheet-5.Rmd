@@ -1,0 +1,53 @@
+---
+title: "Arbeitsblatt 5: Nichtlineare Programmierung und CasADi"
+---
+
+---------------------------------
+
+
+:::: {#explaining .message-box }
+
+::: {#note-exp .note-header}
+```{r, include=knitr::is_html_output(), echo=FALSE,}
+knitr::include_graphics("figures/infoicon.svg")
+```
+**Note**
+:::
+::: {#note-exp .note-body}
+
+Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-freiburg.de/Lehre/Courses/latest/material/optimierung-uebung4.zip) heruntergeladen werden.
+
+:::
+
+::::
+
+# Einführung in CasADi
+
+[CasADi](https://web.casadi.org) ist eine open-source Toolbox zur schnellen Implementierung von nichtlinearen Optimierungsproblemen.
+Der CasADi Code selber ist in C++ geschrieben, aber es gibt Interfaces für Python,
+Matlab und Octave. Ableitungen werden automatisch über Algorithmische Differenzierung (AD)
+berechnet, ein effizientes und gleichzeitig präzises Verfahren. Zum Lösen der Probleme kann Ca-
+sADi diese an verschiedene (alleinstehende) Solver übergeben. Der open-source Solver IPOPT, ein
+nichtlineares Innere-Punkt-Verfahren, ist in einer CasADi-Installation bereits enthalten.
+Nichtlineare Programme werden in CasADi in der Standardform
+
+$$
+\begin{aligned}
+& \underset{x \in \mathbb{R}^n}{\text{min}}
+& & f(x) \\
+& \text{s.t.}
+& & x_{\text{lb}} \leq x \leq x_{\text{ub}}, \\
+& & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}.
+\end{aligned}
+$$
+
+formuliert, wobei die vektorwertige Funktion \( g : \mathbb{R}^n \rightarrow \mathbb{R}^m \) zusammen mit den Begrenzungen \( g_{\text{lb}}, g_{\text{ub}} \in \mathbb{R}^m \) die nichtlinearen Nebenbedingungen ausdrückt.
+Für dieses Übungsblatt werden wir die Hilfsumgebung [Opti Stack](https://web.casadi.org/docs/#document-opti) nutzen, welche eine Syntax bietet, die sehr nah an die Papiernotation angelehnt ist. Die so formulierten NLP werden automatisch in die Standardform (1) übertragen.
+
+**Aufgaben:**
+1. Installieren Sie CasADi. Wenn Sie Anaconda nutzen, aktivieren Sie zunächst das Environment, in dem Sie installieren wollen.
+Installieren Sie dort zunächst pip (`conda install pip`), gefolgt von der CasADi-Installation mit `pip install casadi`.
+Wenn Sie standardmäßig pip verwenden, können Sie CasADi direkt in Ihr gewünschtes Environment installieren.
+
+2. Machen Sie sich mit den bereitgestellten Codebeispielen vertraut und führen diese aus. `puppy.py` enthält eine Implementierung der Bildrekonstruktion, die Sie bereits aus Übung 2 kennen. `chain.py` implementiert eine hängende Kette.
+Beide Beispiele werden in den folgenden Abschnitten kurz vorgestellt.
