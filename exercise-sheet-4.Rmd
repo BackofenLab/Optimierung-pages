@@ -1,0 +1,40 @@
+---
+title: "Arbeitsblatt 4: Lineare Programmierung"
+---
+
+---------------------------------
+
+
+:::: {#explaining .message-box }
+
+::: {#note-exp .note-header}
+```{r, include=knitr::is_html_output(), echo=FALSE,}
+knitr::include_graphics("figures/infoicon.svg")
+```
+**Note**
+:::
+::: {#note-exp .note-body}
+
+Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-freiburg.de/Lehre/Courses/latest/material/optimierung-uebung4.zip) heruntergeladen werden.
+
+:::
+
+::::
+
+# Aufgabe 1
+
+- Ein Server hat einen Plattendurchsatz von 100MB/s, eine Netzwerkkapazität von 1000MBit/s und einen Hauptspeicher mit 8000MB.
+Er soll Jobs dreier verschiedener Arten verarbeiten.
+Jobs vom Typ 1 haben die höchste Priorität von 20 und benötigen 8MB/s Plattendurchsatz, 50MBit/s vom Netzwerk und 50MB Speicher (wir unterscheiden hier nicht zwischen mittlerer und Peakauslastung).
+Von Typ 1 stehen 10 in der Queue.
+Die 5 Jobs vom Typ 2 haben Priorität 8 und benötigen 5MB/s, 2MBit/s und 800MB.
+Außerdem gibt es noch 50 Jobs vom Typ 3 mit Priorität 2, welche 2MB/s Platte und 40MB Speicher benötigen.
+Alle Jobs dauern gleich lange. Wir möchten die Jobs so auswählen, dass die Summe der Prioritäten maximal wird.
+Formulieren Sie die Aufgabe als lineares Programm.
+
+- Bringen Sie die Formulierung in die Standardform.
+Definieren Sie die Matrix A sowie auch die Vektoren b und c in `aufgabe.py`.
+
+- Lösen Sie das Problem mit `scipy.optimize.linprog`.
+Nutzen Sie die simplex Methode und als Bounds `0, None`.
+Implementieren Sie die Funktion `run_simplex_method`.
