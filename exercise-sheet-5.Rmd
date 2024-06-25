@@ -227,7 +227,7 @@ Dafür implementiert acados ein SQP-Verfahren sowie numerische Integratoren für
 Zum Lösen der im SQP-Verfahren anfallenden QP wird auf moderne open-source QP-Löser zurückgegriffen, z.B. HP ipm, qpOASES, OSQP, DQAP.
 Optimalsteuerungsprobleme werden mit
 
-```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 5** - Illustration des Pendels auf einem Wagen.'}
+```{r, echo=FALSE, out.width='40%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 5** - Illustration des Pendels auf einem Wagen.'}
 knitr::include_graphics("figures/sheet-5/p6.png")
 ```
 
@@ -266,7 +266,7 @@ Unser Steuerungseingang ist hierbei $u = F$. Dies soll innerhalb des Zeitinterva
 Wir drücken dies als das folgende Optimalsteuerungsproblem aus,
 
 $$
-\min_{x(\cdot), u(\cdot)} \int_0^T \frac{1}{2} x(t)^T Q x(t) + \frac{1}{2} u(t)^T R u(t) dt + \frac{1}{2} x(T)^T Q_e x(T)
+x = \begin{bmatrix} p_x \\ \theta \\ v_x \\ \omega \end{bmatrix}, \quad \dot{x} = f(x, u) = \begin{bmatrix} v_x \\ \omega \\ \frac{-m l \omega^2 \sin \theta + m g \cos \theta \sin \theta + F}{M + (1 - \cos^2 \theta) m} \\ \frac{-m l \omega^2 \cos \theta \sin \theta + F \cos \theta + (M + m) g \sin \theta}{l (M + (1 - \cos^2 \theta) m)} \end{bmatrix}
 $$
 
 unter den Nebenbedingungen
@@ -280,6 +280,7 @@ x(0) &= x_0, \\
 $$
 
 wo bei $\hat{x}_0$ der gegebene initiale Zustand des Systems ist.
+
 Anders als wir es bisher in der Vorlesung gesehen haben, sind in dem obigen Optimalsteuerungsproblem die Entscheidungsvariablen $x(\cdot)$ und $u(\cdot)$ Funktionen der Zeit.
 Es handelt es sich deshalb nicht um ein NLP, und wir können es auch nicht ohne weiteres auf einem Computer repräsentieren.
 Hierfür muss es erst durch numerische Integration in der Zeit diskretisiert werden, wie wir es bereits in der vorherigen Aufgabe mit dem RK4-Verfahren gemacht haben.
