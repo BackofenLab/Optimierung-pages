@@ -32,6 +32,7 @@ nichtlineares Innere-Punkt-Verfahren, ist in einer CasADi-Installation bereits e
 Nichtlineare Programme werden in CasADi in der Standardform
 
 $$
+\begin{equation}
 \begin{aligned}
 & \min_{x \in \mathbb{R}^n}
 & & f(x) \\
@@ -39,6 +40,7 @@ $$
 & & x_{\text{lb}} \leq x \leq x_{\text{ub}}, \\
 & & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}
 \end{aligned}
+\end{equation}
 $$
 
 formuliert, wobei die vektorwertige Funktion \( g : \mathbb{R}^n \rightarrow \mathbb{R}^m \) zusammen mit den Begrenzungen \( g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m \) die nichtlinearen Nebenbedingungen ausdrückt.
