@@ -37,8 +37,8 @@ $$
 & \text{s.t.}
 & & x_{\text{lb}} \leq x \leq x_{\text{ub}}, \\
 & & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}
-\tag{1}
 \end{align}
+\tag{1}
 $$
 
 formuliert, wobei die vektorwertige Funktion $g : \mathbb{R}^n \rightarrow \mathbb{R}^m$ zusammen mit den Begrenzungen $g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m$ die nichtlinearen Nebenbedingungen ausdrückt.
