@@ -250,15 +250,7 @@ Durch Zusammenfassen der (Winkel)positionen und -geschwindigkeiten im Zustandsve
 
 
 $$
-\dot{x} =
-\begin{bmatrix}
-v_x \\
-\omega
-\end{bmatrix} =
-\begin{bmatrix}
--m \omega^2 \sin \theta + m \omega \cos \theta \sin \theta + F \\
--\frac{m \omega^2 \cos^2 \theta + M (1 - \cos^2 \theta) + \frac{(m + M) g \sin \theta}{l (1 - F \cos \theta)}}{M + \frac{F \cos^2 \theta}{m}}
-\end{bmatrix}.
+x = \begin{bmatrix} p_x \\ \theta \\ v_x \\ \omega \end{bmatrix}, \quad \dot{x} = f(x, u) = \begin{bmatrix} v_x \\ \omega \\ \frac{-m l \omega^2 \sin \theta + m g \cos \theta \sin \theta + F}{M + (1 - \cos^2 \theta) m} \\ \frac{-m l \omega^2 \cos \theta \sin \theta + F \cos \theta + (M + m) g \sin \theta}{l (M + (1 - \cos^2 \theta) m)} \end{bmatrix}
 $$
 
 Unser Ziel ist es nun das Pendel aus einer herabhängenden Position in eine aufrechte Position ($\beta = 0$) zu schwingen, während der Wagen am Ende die Position $p_x = 0$ haben soll.
@@ -266,7 +258,7 @@ Unser Steuerungseingang ist hierbei $u = F$. Dies soll innerhalb des Zeitinterva
 Wir drücken dies als das folgende Optimalsteuerungsproblem aus,
 
 $$
-x = \begin{bmatrix} p_x \\ \theta \\ v_x \\ \omega \end{bmatrix}, \quad \dot{x} = f(x, u) = \begin{bmatrix} v_x \\ \omega \\ \frac{-m l \omega^2 \sin \theta + m g \cos \theta \sin \theta + F}{M + (1 - \cos^2 \theta) m} \\ \frac{-m l \omega^2 \cos \theta \sin \theta + F \cos \theta + (M + m) g \sin \theta}{l (M + (1 - \cos^2 \theta) m)} \end{bmatrix}
+\min_{x(\cdot), u(\cdot)} \int_0^T \frac{1}{2} x(t)^T Q x(t) + \frac{1}{2} u(t)^T R u(t) dt + \frac{1}{2} x(T)^T Q_e x(T)
 $$
 
 unter den Nebenbedingungen
@@ -280,7 +272,6 @@ x(0) &= x_0, \\
 $$
 
 wo bei $\hat{x}_0$ der gegebene initiale Zustand des Systems ist.
-
 Anders als wir es bisher in der Vorlesung gesehen haben, sind in dem obigen Optimalsteuerungsproblem die Entscheidungsvariablen $x(\cdot)$ und $u(\cdot)$ Funktionen der Zeit.
 Es handelt es sich deshalb nicht um ein NLP, und wir können es auch nicht ohne weiteres auf einem Computer repräsentieren.
 Hierfür muss es erst durch numerische Integration in der Zeit diskretisiert werden, wie wir es bereits in der vorherigen Aufgabe mit dem RK4-Verfahren gemacht haben.
