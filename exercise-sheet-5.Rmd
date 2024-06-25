@@ -24,12 +24,12 @@ Alle Aufgaben sowie die dazugehörigen Dateien können [hier](http://bioinf.uni-
 # Einführung in CasADi
 
 [CasADi](https://web.casadi.org) ist eine open-source Toolbox zur schnellen Implementierung von nichtlinearen Optimierungsproblemen.
-Der CasADi Code selber ist in C++ geschrieben, aber es gibt Interfaces für Python,
-Matlab und Octave. Ableitungen werden automatisch über Algorithmische Differenzierung (AD)
-berechnet, ein effizientes und gleichzeitig präzises Verfahren. Zum Lösen der Probleme kann Ca-
-sADi diese an verschiedene (alleinstehende) Solver übergeben. Der open-source Solver IPOPT, ein
-nichtlineares Innere-Punkt-Verfahren, ist in einer CasADi-Installation bereits enthalten.
-Nichtlineare Programme werden in CasADi in der Standardform
+Der CasADi Code selber ist in C++ geschrieben, aber es gibt Interfaces für Python, Matlab und Octave.
+Ableitungen werden automatisch über Algorithmische Differenzierung (AD) berechnet,
+ein effizientes und gleichzeitig präzises Verfahren.
+Zum Lösen der Probleme kann `CasADi` diese an verschiedene (alleinstehende) Solver übergeben.
+Der open-source Solver `IPOPT`, ein nichtlineares Innere-Punkt-Verfahren, ist in einer `CasADi`-Installation bereits enthalten.
+Nichtlineare Programme werden in `CasADi` in der Standardform
 
 \begin{equation}
 \begin{aligned}
@@ -40,16 +40,20 @@ Nichtlineare Programme werden in CasADi in der Standardform
 & & & g_{\text{lb}} \leq g(x) \leq g_{\text{ub}}
 \end{aligned}
 \end{equation}
+
 formuliert, wobei die vektorwertige Funktion $ g : \mathbb{R}^n \rightarrow \mathbb{R}^m $ zusammen mit den Begrenzungen $ g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m $ die nichtlinearen Nebenbedingungen ausdrückt.
-Für dieses Übungsblatt werden wir die Hilfsumgebung [Opti Stack](https://web.casadi.org/docs/#document-opti) nutzen, welche eine Syntax bietet, die sehr nah an die Papiernotation angelehnt ist. Die so formulierten NLP werden automatisch in die Standardform (1) übertragen.
+Für dieses Übungsblatt werden wir die Hilfsumgebung [Opti Stack](https://web.casadi.org/docs/#document-opti) nutzen, welche eine Syntax bietet, die sehr nah an die Papiernotation angelehnt ist.
+Die so formulierten NLP werden automatisch in die Standardform übertragen.
 
 **Aufgaben:**
 
 1. Installieren Sie CasADi. Wenn Sie Anaconda nutzen, aktivieren Sie zunächst das Environment, in dem Sie installieren wollen.
-Installieren Sie dort zunächst pip (`conda install pip`), gefolgt von der CasADi-Installation mit `pip install casadi`.
+Installieren Sie dort zunächst pip (`conda install pip`), gefolgt von der `CasADi`-Installation mit `pip install casadi`.
 Wenn Sie standardmäßig pip verwenden, können Sie CasADi direkt in Ihr gewünschtes Environment installieren.
 
-2. Machen Sie sich mit den bereitgestellten Codebeispielen vertraut und führen diese aus. `puppy.py` enthält eine Implementierung der Bildrekonstruktion, die Sie bereits aus Übung 2 kennen. `chain.py` implementiert eine hängende Kette.
+2. Machen Sie sich mit den bereitgestellten Codebeispielen vertraut und führen diese aus.
+`puppy.py` enthält eine Implementierung der Bildrekonstruktion, die Sie bereits aus Übung 2 kennen.
+`chain.py` implementiert eine hängende Kette.
 Beide Beispiele werden in den folgenden Abschnitten kurz vorgestellt.
 
 ---
@@ -60,7 +64,7 @@ Wir haben ein verrauschtes schwarz-weiß Bild in Form der Matrix $ Y \in \mathbb
 Ziel ist es, eine weniger verrauschte Version $ X \in \mathbb{R}^{r \times c} $ zu rekonstruieren. Dies kann als das unbeschränkte Optimierungsproblem formuliert werden.
 
 $$
-\min_{X \in \mathbb{R}^{r \times c}} \sum_{i=1}^r \sum_{j=1}^c \left( \sqrt{(X_{i,j} - Y_{i,j})^2 + 1} + \alpha \left( \sqrt{(X_{i,j} - X_{i+1,j})^2 + 1} + \sqrt{(X_{i,j} - X_{i,j+1})^2 + 1} \right) \right)
+\min_{X \in \mathbb{R}^{r \times c}} \sum_{i=1}^r \sum_{j=1}^c \left( \sqrt{(X_{i,j} - Y_{i,j})^2 + 1} + \alpha \sqrt{(X_{i,j} - X_{i+1,j})^2 + (X_{i,j} - X_{i,j+1})^2 + 1} \right)
 $$
 
 
@@ -203,7 +207,7 @@ Dabei wollen wir den Steuerungsaufwand $L(U) := \sum_{k=0}^{N-1} u_k^2$ minimier
 1. Formulieren Sie unser Optimalsteuerungsproblem als nichtlineares Programm. Dabei sollen $x_0, \ldots, x_N$ und $u_0, \ldots, u_{N-1}$ die Entscheidungsvariablen sein.
 Die Nebenbedingungen sind die Dynamik, sowie die Start- und Zielposition.
 2. Diskutieren Sie kurz, ob das Problem konvex ist.
-3. Benutzen Sie das bereitgestellte Template, um das NLP mit CasADi und IPOPT zu lösen.
+3. Benutzen Sie das bereitgestellte Template, um das NLP mit `CasADi` und `IPOPT` zu lösen.
 Erstellen Sie Plots der optimalen Trajektorien von $\theta$, $\omega$ und $u$, mit der diskreten Zeit $k$ auf der $x$-Achse.
 Sie können Ihre Lösung außerdem mit der bereitgestellten Animation (`pendulum.gif`) vergleichen.
 4. Wir führen nun eine zusätzliche Beschränkung der Steuerung ein.
@@ -219,11 +223,11 @@ Verwenden Sie $u_{\text{max}} = 0.13$.
 ---
 
 
-# Aufgabe 3: Optimalsteuerung mit acados (Bonus)
+# Aufgabe 3: Optimalsteuerung mit `acados` (Bonus)
 
-In dieser Aufgabe lernen wir das open-source Softwarepaket acados kennen.
-acados bietet eine Sammlung effizienter Algorithmen, die auf das Lösen von Optimalsteuerungsproblemen spezialisiert sind.
-Dafür implementiert acados ein SQP-Verfahren sowie numerische Integratoren für Differentialgleichungen.
+In dieser Aufgabe lernen wir das open-source Softwarepaket `acados` kennen.
+`acados` bietet eine Sammlung effizienter Algorithmen, die auf das Lösen von Optimalsteuerungsproblemen spezialisiert sind.
+Dafür implementiert `acados` ein SQP-Verfahren sowie numerische Integratoren für Differentialgleichungen.
 Zum Lösen der im SQP-Verfahren anfallenden QP wird auf moderne open-source QP-Löser zurückgegriffen, z.B. HP ipm, qpOASES, OSQP, DQAP.
 Optimalsteuerungsprobleme werden mit
 
@@ -231,13 +235,13 @@ Optimalsteuerungsprobleme werden mit
 knitr::include_graphics("figures/sheet-5/p6.png")
 ```
 
-CasADi's symbolische Variablen definieren, welches auch zur Berechnung von Ableitungen verwendet wird. Für die grundlegenden Operationen der linearen Algebra (z.B. Matrix-Matrix-Multiplikationen) wird BLASFEO verwendet. Auf Grundlage der erwähnten Komponenten generiert acados dann C-Code, welcher ohne externe Abhängigkeiten auskommt. Dieser kann insbesondere auch auf eingebetteten Systemen ausgeführt werden, was die Optimalsteuerung technischer Systeme in Echtzeit ermöglicht. Unter folgenden Links finden Sie weitere Informationen:
+`CasADi`'s symbolische Variablen definieren, welches auch zur Berechnung von Ableitungen verwendet wird. Für die grundlegenden Operationen der linearen Algebra (z.B. Matrix-Matrix-Multiplikationen) wird BLASFEO verwendet. Auf Grundlage der erwähnten Komponenten generiert acados dann C-Code, welcher ohne externe Abhängigkeiten auskommt. Dieser kann insbesondere auch auf eingebetteten Systemen ausgeführt werden, was die Optimalsteuerung technischer Systeme in Echtzeit ermöglicht. Unter folgenden Links finden Sie weitere Informationen:
 
-- Dokumentation: [https://docs.acados.org/](https://docs.acados.org/)
-- Installation: [https://docs.acados.org/installation/](https://docs.acados.org/installation/)
-- Python-Interface Installation: [https://docs.acados.org/python_interface/](https://docs.acados.org/python_interface/)
-- acados OCP-Formulierung: [https://github.com/acados/acados/blob/master/docs/problem_formulation/ocp_mex.pdf](https://github.com/acados/acados/blob/master/docs/problem_formulation/ocp_mex.pdf)
-- acados Forum: [https://discourse.acados.org](https://discourse.acados.org)
+- [Dokumentation](https://docs.acados.org/)
+- [Installation](https://docs.acados.org/installation/)
+- [Python-Interface Installation](https://docs.acados.org/python_interface/)
+- [acados OCP-Formulierung](https://github.com/acados/acados/blob/master/docs/problem_formulation/ocp_mex.pdf)
+- [acados Forum](https://discourse.acados.org)
 
 ### Pendel auf einem Wagen
 
@@ -265,7 +269,7 @@ unter den Nebenbedingungen
 
 $$
 \begin{aligned}
-x(0) &= \bar{x_0}, \\
+x(0) &= \bar{x}_0, \\
 \dot{x}(t) &= f(x(t), u(t)), \quad t \in [0, T], \\
 -u_{\text{max}} &\leq u(t) \leq u_{\text{max}}, \quad t \in [0, T].
 \end{aligned}
@@ -275,11 +279,11 @@ wo bei $\hat{x}_0$ der gegebene initiale Zustand des Systems ist.
 Anders als wir es bisher in der Vorlesung gesehen haben, sind in dem obigen Optimalsteuerungsproblem die Entscheidungsvariablen $x(\cdot)$ und $u(\cdot)$ Funktionen der Zeit.
 Es handelt es sich deshalb nicht um ein NLP, und wir können es auch nicht ohne weiteres auf einem Computer repräsentieren.
 Hierfür muss es erst durch numerische Integration in der Zeit diskretisiert werden, wie wir es bereits in der vorherigen Aufgabe mit dem RK4-Verfahren gemacht haben.
-Da allerdings acados dies für uns übernimmt und eine Vielzahl effizienter Integrationsverfahren hierfür bereitstellt, übergeben wir das Optimalsteuerungsproblem in kontinuierlicher Zeit.
+Da allerdings `acados` dies für uns übernimmt und eine Vielzahl effizienter Integrationsverfahren hierfür bereitstellt, übergeben wir das Optimalsteuerungsproblem in kontinuierlicher Zeit.
 
 **Aufgaben:**
 
-1. Installieren Sie acados sowie das zugehörige Python-Interface.
+1. Installieren Sie `acados` sowie das zugehörige Python-Interface.
 Die Links dafür sind weiter oben gegeben. Versichern Sie sich, dass Ihre Installation funktioniert, indem Sie das Minimalbeispiel `minimal_example_ocp.py` ausführen (vgl. Installationsanleitung Python-Interface).
 2. Das Optimalsteuerungsproblem ist für Sie bereits in `cartpole.py` implementiert. Machen Sie sich kurz mit dem Code vertraut und führen Sie ihn dann aus.
 3. Wir wollen eine zusätzliche Nebenbedingung auf die Geschwindigkeit $v_x$ einführen. Diese ist
@@ -288,4 +292,4 @@ $$
 -u_{\text{max}} \leq u(t) \leq u_{\text{max}}, \quad t \in [0, T],
 $$
 
-mit $v_x = 5 \, \text{m/s}$. Erweitern Sie `minimal_example_ocp.py` um diese Nebenbedingung, und lösen Sie das Optimalsteuerungsproblem erneut.
+mit $v_x = 5 \, \frac{\text{m}}{\text{s}}$. Erweitern Sie `minimal_example_ocp.py` um diese Nebenbedingung, und lösen Sie das Optimalsteuerungsproblem erneut.
