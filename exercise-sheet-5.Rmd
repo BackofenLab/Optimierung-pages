@@ -43,7 +43,7 @@ $$
 
 formuliert, wobei die vektorwertige Funktion $g : \mathbb{R}^n \rightarrow \mathbb{R}^m$ zusammen mit den Begrenzungen $g_{\text{lb}}, u_{\text{lb}} \in \mathbb{R}^m$ die nichtlinearen Nebenbedingungen ausdrückt.
 Für dieses Übungsblatt werden wir die Hilfsumgebung [Opti Stack](https://web.casadi.org/docs/#document-opti) nutzen, welche eine Syntax bietet, die sehr nah an die Papiernotation angelehnt ist.
-Die so formulierten NLP werden automatisch in die Standardform übertragen.
+Die so formulierten NLP werden automatisch in die Standardform **(1)** übertragen.
 
 **Aufgaben:**
 
@@ -68,7 +68,7 @@ $$
 $$
 
 
-```{r, echo=FALSE, out.width='40%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 1** - Beispiel einer durch Lösung von Problem (2) erhaltenen Rekonstruktion. Links: Verrauschtes Original Y. Rechts: Rekonstruierte Version $X$ mit $\\alpha = 0.5$.'}
+```{r, echo=FALSE, out.width='40%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 1** - Beispiel einer durch Lösung von Problem **(2)** erhaltenen Rekonstruktion. Links: Verrauschtes Original Y. Rechts: Rekonstruierte Version $X$ mit $\\alpha = 0.5$.'}
 knitr::include_graphics(c("figures/sheet-5/p1.png", "figures/sheet-5/p2.png"))
 ```
 
@@ -130,10 +130,12 @@ knitr::include_graphics("figures/sheet-5/p3.png")
 
 # Aufgabe 1 - Optimale Kreisplatzierung
 
-Im Rahmen eines Produktionsprozesses sollen fünf Kreise, $ s_1, \ldots, s_5 $, aus einer quadratischen Platte mit Kantenlänge $ a = 10 $ cm ausgeschnitten werden.
-Drei dieser Kreise sollen den Radius $ R $ haben, die anderen beiden den Radius $ 2R $.
-Die Position eines Kreises $ s_i $ auf der Platte ist durch die Koordinaten $ (x_i, y_i) $ seines Mittelpunktes bestimmt.
-Ziel ist es, die Kreise so anzuordnen, dass der Radius $ R $ so groß wie möglich gewählt werden kann. Dabei muss sowohl sichergestellt werden, dass alle Kreise auf der Platte liegen, als auch dass sich diese nicht überschneiden.
+Im Rahmen eines Produktionsprozesses sollen fünf Kreise, $s_1, \ldots, s_5$, aus einer quadratischen Platte mit Kantenlänge $a = 10$ cm ausgeschnitten werden.
+Drei dieser Kreise sollen den Radius $R$ haben, die anderen beiden den Radius $2R$.
+Die Position eines Kreises $s_i$ auf der Platte ist durch die Koordinaten $(x_i, y_i)$ seines Mittelpunktes bestimmt.
+Ziel ist es, die Kreise so anzuordnen, dass der Radius $R$ so groß wie möglich gewählt werden kann.
+Dabei muss sowohl sichergestellt werden, dass alle Kreise auf der Platte liegen, als auch dass sich diese nicht überschneiden.
+
 Eine Illustration der Situation ist in Abbildung 3 gegeben.
 
 ```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 3** - Beispiel einer möglichen - aber nicht optimalen - Anordnung der Kreise.'}
@@ -153,13 +155,15 @@ Wir können dies als das folgende nichtlineare Optimierungsproblem ausdrücken:
 \end{aligned}
 \]
 
-mit $ r_i(R) = R $ für $ i \in \{1, 2, 3\} $ und $ r_i(R) = 2R $ für $ i \in \{4, 5\} $.
+mit $r_i(R) = R$ für $i \in \{1, 2, 3\}$ und $r_i(R) = 2R$ für $i \in \{4, 5\}$.
 
 **Aufgaben:**
 
 1. Diskutieren Sie kurz, ob das Problem konvex ist.
 2. Vervollständigen Sie das bereits gestellte Template, um das Optimierungsproblem mit CasADi und IPOPT zu lösen. Wie groß ist der Radius, den Sie erhalten?
-3. Im Template war bereits eine konkrete Initialisierung der Entscheidungsvariablen gegeben. Verändern Sie diese, um mindestens eine bessere Lösung zu erhalten. Was ist die beste Lösung, die Sie finden können? Ist es möglich, dass es eine noch bessere gibt?
+3. Im Template war bereits eine konkrete Initialisierung der Entscheidungsvariablen gegeben. Verändern Sie diese, um mindestens eine bessere Lösung zu erhalten.
+Was ist die beste Lösung, die Sie finden können?
+Ist es möglich, dass es eine noch bessere gibt?
 
 ---
 
@@ -174,7 +178,7 @@ Dessen Position ist durch den Winkel $\theta$ eindeutig bestimmt. Dabei entspric
 Eine Illustration finden Sie in Abbildung 4.
 In der Aufhängung des Pendels sitzt ein Motor, sodass es anhand eines Drehmoments $u$ gesteuert werden kann.
 Die Winkelgeschwindigkeit ist $\omega = \dot{\theta}$.
-Fassen wir Position und Geschwindigkeit im Zustandsvektor $x = \begin{bmatrix} \theta \\ \omega \end{bmatrix}^T$ zusammen, können wir die Dynamik des Pendels durch die gewöhnliche Differentialgleichung (ordinary differential equation, ODE)
+Fassen wir Position und Geschwindigkeit im Zustandsvektor $x = \begin{bmatrix} \theta \quad \omega \end{bmatrix}^T$ zusammen, können wir die Dynamik des Pendels durch die gewöhnliche Differentialgleichung (ordinary differential equation, ODE)
 
 $$
 \dot{x} = \begin{bmatrix} \dot{\theta} \\
@@ -186,13 +190,16 @@ beschreiben. (Zur Vereinfachung haben wir hier alle Einheiten ignoriert. Eigentl
 da dieser dann mit dem Drehmoment summiert wird.)
 
 
-Wir betrachten das Pendel über die Zeitdauer $ T $ und diskretisieren diese in $ N $ Zeitschritte. Zur Simulation verwenden wir das Runge-Kutta-Verfahren 4. Ordnung (RK4) und erhalten dadurch die diskretisierte Dynamik
+Wir betrachten das Pendel über die Zeitdauer $T$ und diskretisieren diese in $N$ Zeitschritte.
+Zur Simulation verwenden wir das Runge-Kutta-Verfahren 4.
+Ordnung (RK4) und erhalten dadurch die diskretisierte Dynamik
 
 $$
 x_{k+1} = F(x_k, u_k),
 $$
 
-wobei $ x_k $ der Zustand zum diskreten Zeitpunkt $ k $, $ k = 0, \ldots, N $, und $ h = \frac{T}{N} $ der Integrationschritt ist. Wir fassen die Zustände und die Steuerungsinputs zu allein Zeitpunkten in den Matrizen
+wobei $x_k$ der Zustand zum diskreten Zeitpunkt $k$, $k = 0, \ldots, N$, und $h = \frac{T}{N}$ der Integrationschritt ist.
+Wir fassen die Zustände und die Steuerungsinputs zu allein Zeitpunkten in den Matrizen
 
 $$
 X := \begin{bmatrix} x_0 & \ldots & x_N \end{bmatrix} \in \mathbb{R}^{2 \times (N+1)} \quad \text{und} \quad U := \begin{bmatrix} u_0 & \ldots & u_{N-1} \end{bmatrix} \in \mathbb{R}^{1 \times N}
