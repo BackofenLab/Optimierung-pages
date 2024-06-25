@@ -117,6 +117,6 @@ $$
 
 Beachten Sie, dass es sich bei NLP (4) um ein konvexes QP handelt (wieso?), während (5) ein nichtkonvexes NLP ist. In `chain.py` finden Sie eine vollständige Implementierung beider Probleme hier von. Abbildung 2 zeigt die Lösungen der beiden Variationen. Für Variation 2 sind zwei mögliche Lösungen dargestellt.
 
-```{r, echo=FALSE, out.width='40%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 2** - Illustration der hängenden Kette in beiden Variationen'}
-knitr::include_graphics(c("figures/sheet-5/p3.png", "figures/sheet-5/p4.png"))
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 2** - Illustration der hängenden Kette in beiden Variationen'}
+knitr::include_graphics("figures/sheet-5/p3.png")
 ```
