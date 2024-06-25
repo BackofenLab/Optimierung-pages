@@ -265,7 +265,7 @@ unter den Nebenbedingungen
 
 $$
 \begin{aligned}
-x(0) &= x_0, \\
+x(0) &= \bar{x_0}, \\
 \dot{x}(t) &= f(x(t), u(t)), \quad t \in [0, T], \\
 -u_{\text{max}} &\leq u(t) \leq u_{\text{max}}, \quad t \in [0, T].
 \end{aligned}
