@@ -128,6 +128,27 @@ Die Position eines Kreises \( s_i \) auf der Platte ist durch die Koordinaten \(
 Ziel ist es, die Kreise so anzuordnen, dass der Radius \( R \) so groß wie möglich gewählt werden kann. Dabei muss sowohl sichergestellt werden, dass alle Kreise auf der Platte liegen, als auch dass sich diese nicht überschneiden.
 Eine Illustration der Situation ist in Abbildung 3 gegeben.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 3** - Beispiel einer möglichen - aber nicht optimalen - Anordnung der Kreise.'}
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 3** - Beispiel einer möglichen - aber nicht optimalen - Anordnung der Kreise.'}
 knitr::include_graphics("figures/sheet-5/p4.png")
 ```
+
+Wir können dies als das folgende nichtlineare Optimierungsproblem ausdrücken:
+
+\[
+\begin{aligned}
+\min_{R, x_1, \ldots, x_5, y_1, \ldots, y_5} \quad & -R \\
+\text{s.t.} \quad & x_i - r_i(R) \geq 0, & i = 1, \ldots, 5, \\
+& x_i + r_i(R) \leq a, & i = 1, \ldots, 5, \\
+& y_i - r_i(R) \geq 0, & i = 1, \ldots, 5, \\
+& y_i + r_i(R) \leq a, & i = 1, \ldots, 5, \\
+& (x_i - x_j)^2 + (y_i - y_j)^2 \geq (r_i + r_j)^2, & i, j = 1, \ldots, 5, i < j,
+\end{aligned}
+\]
+
+mit \( r_i(R) = R \) für \( i \in \{1, 2, 3\} \) und \( r_i(R) = 2R \) für \( i \in \{4, 5\} \).
+
+**Aufgaben:**
+
+1. Diskutieren Sie kurz, ob das Problem konvex ist.
+2. Vervollständigen Sie das bereits gestellte Template, um das Optimierungsproblem mit CasADi und IPOPT zu lösen. Wie groß ist der Radius, den Sie erhalten?
+3. Im Template war bereits eine konkrete Initialisierung der Entscheidungsvariablen gegeben. Verändern Sie diese, um mindestens eine bessere Lösung zu erhalten. Was ist die beste Lösung, die Sie finden können? Ist es möglich, dass es eine noch bessere gibt?
