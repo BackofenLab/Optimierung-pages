@@ -47,7 +47,7 @@ jobs:
 
       - name: Update environment
         run:
-          mamba env update -n rmarkdown-env -f ./github/envs/environment.yml
+          mamba env update -n rmarkdown-env -f .github/envs/environment.yml
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Render Rmd files
