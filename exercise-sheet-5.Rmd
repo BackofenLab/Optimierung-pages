@@ -161,7 +161,7 @@ mit $r_i(R) = R$ für $i \in \{1, 2, 3\}$ und $r_i(R) = 2R$ für $i \in \{4, 5\}
 **Aufgaben:**
 
 1. Diskutieren Sie kurz, ob das Problem konvex ist.
-2. Vervollständigen Sie das bereits gestellte Template, um das Optimierungsproblem mit CasADi und IPOPT zu lösen. Wie groß ist der Radius, den Sie erhalten?
+2. Vervollständigen Sie das bereits gestellte Template, um das Optimierungsproblem mit `CasADi` und `IPOPT` zu lösen. Wie groß ist der Radius, den Sie erhalten?
 3. Im Template war bereits eine konkrete Initialisierung der Entscheidungsvariablen gegeben. Verändern Sie diese, um mindestens eine bessere Lösung zu erhalten.
 Was ist die beste Lösung, die Sie finden können?
 Ist es möglich, dass es eine noch bessere gibt?
@@ -192,11 +192,11 @@ da dieser dann mit dem Drehmoment summiert wird.)
 
 
 Wir betrachten das Pendel über die Zeitdauer $T$ und diskretisieren diese in $N$ Zeitschritte.
-Zur Simulation verwenden wir das Runge-Kutta-Verfahren 4.
+Zur Simulation verwenden wir das [Runge-Kutta-Verfahren](https://de.wikipedia.org/wiki/Klassisches_Runge-Kutta-Verfahren).
 Ordnung (RK4) und erhalten dadurch die diskretisierte Dynamik
 
 $$
-x_{k+1} = F(x_k, u_k),
+x_{k+1} = F_{h}(x_k, u_k),
 $$
 
 wobei $x_k$ der Zustand zum diskreten Zeitpunkt $k$, $k = 0, \ldots, N$, und $h = \frac{T}{N}$ der Integrationschritt ist.
@@ -209,7 +209,7 @@ $$
 zusammen.
 
 
-Unser Ziel ist es nun, das Pendel aus seiner herabhängenden Ruhelage $x_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = 0$ in die aufrechte stehende Position $x_N = \begin{bmatrix} 0 & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = N$ zu schwingen.
+Unser Ziel ist es nun, das Pendel aus seiner herabhängenden Ruhelage $\bar{x}_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = 0$ in die aufrechte stehende Position $\bar{x}_N = \begin{bmatrix} 0 & 0 \end{bmatrix}^T$ zum Zeitpunkt $k = N$ zu schwingen.
 Dabei wollen wir den Steuerungsaufwand $L(U) := \sum_{k=0}^{N-1} u_k^2$ minimieren.
 
 **Aufgaben:**
@@ -245,7 +245,7 @@ Optimalsteuerungsprobleme werden mit
 knitr::include_graphics("figures/sheet-5/p6.png")
 ```
 
-`CasADi`'s symbolische Variablen definieren, welches auch zur Berechnung von Ableitungen verwendet wird. Für die grundlegenden Operationen der linearen Algebra (z.B. Matrix-Matrix-Multiplikationen) wird BLASFEO verwendet. Auf Grundlage der erwähnten Komponenten generiert acados dann C-Code, welcher ohne externe Abhängigkeiten auskommt. Dieser kann insbesondere auch auf eingebetteten Systemen ausgeführt werden, was die Optimalsteuerung technischer Systeme in Echtzeit ermöglicht. Unter folgenden Links finden Sie weitere Informationen:
+`CasADi`'s symbolische Variablen definieren, welches auch zur Berechnung von Ableitungen verwendet wird. Für die grundlegenden Operationen der linearen Algebra (z.B. Matrix-Matrix-Multiplikationen) wird `BLASFEO` verwendet. Auf Grundlage der erwähnten Komponenten generiert acados dann C-Code, welcher ohne externe Abhängigkeiten auskommt. Dieser kann insbesondere auch auf eingebetteten Systemen ausgeführt werden, was die Optimalsteuerung technischer Systeme in Echtzeit ermöglicht. Unter folgenden Links finden Sie weitere Informationen:
 
 - [Dokumentation](https://docs.acados.org/)
 - [Installation](https://docs.acados.org/installation/)
@@ -264,7 +264,7 @@ Durch Zusammenfassen der (Winkel)positionen und -geschwindigkeiten im Zustandsve
 
 
 $$
-x = \begin{bmatrix} p_x \\ \theta \\ v_x \\ \omega \end{bmatrix}, \quad \dot{x} = f(x, u) = \begin{bmatrix} v_x \\ \omega \\ \frac{-m l \omega^2 \sin \theta + m g \cos \theta \sin \theta + F}{M + (1 - \cos^2 \theta) m} \\ \frac{-m l \omega^2 \cos \theta \sin \theta + F \cos \theta + (M + m) g \sin \theta}{l (M + (1 - \cos^2 \theta) m)} \end{bmatrix}
+x = \begin{bmatrix} p_x \\ \theta \\ v_x \\ \omega \end{bmatrix}, \quad \dot{x} = f(x, u) = \begin{bmatrix} v_x \\ \omega \\ \frac{-m l \omega^2 \sin \theta + m g \cos \theta \sin \theta + F}{M + (1 - \cos^2 \theta) m} \\ \frac{-m l \omega^2 \cos \theta \sin \theta + F \cos \theta + (M + m) g \sin \theta}{l (M + (1 - \cos^2 \theta)) m} \end{bmatrix}
 $$
 
 Unser Ziel ist es nun das Pendel aus einer herabhängenden Position in eine aufrechte Position ($\beta = 0$) zu schwingen, während der Wagen am Ende die Position $p_x = 0$ haben soll.
@@ -286,6 +286,7 @@ x(0) &= \bar{x}_0, \\
 $$
 
 wo bei $\hat{x}_0$ der gegebene initiale Zustand des Systems ist.
+
 Anders als wir es bisher in der Vorlesung gesehen haben, sind in dem obigen Optimalsteuerungsproblem die Entscheidungsvariablen $x(\cdot)$ und $u(\cdot)$ Funktionen der Zeit.
 Es handelt es sich deshalb nicht um ein NLP, und wir können es auch nicht ohne weiteres auf einem Computer repräsentieren.
 Hierfür muss es erst durch numerische Integration in der Zeit diskretisiert werden, wie wir es bereits in der vorherigen Aufgabe mit dem RK4-Verfahren gemacht haben.
@@ -299,7 +300,7 @@ Die Links dafür sind weiter oben gegeben. Versichern Sie sich, dass Ihre Instal
 3. Wir wollen eine zusätzliche Nebenbedingung auf die Geschwindigkeit $v_x$ einführen. Diese ist
 
 $$
--u_{\text{max}} \leq u(t) \leq u_{\text{max}}, \quad t \in [0, T],
+-v_{\text{max}} \leq v_{x}(t) \leq v_{\text{max}}, \quad t \in [0, T],
 $$
 
 mit $v_x = 5 \, \frac{\text{m}}{\text{s}}$. Erweitern Sie `minimal_example_ocp.py` um diese Nebenbedingung, und lösen Sie das Optimalsteuerungsproblem erneut.
