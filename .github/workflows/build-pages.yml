@@ -1,8 +1,4 @@
 name: build-github-pages
-env:
-  GITHUB_ACTOR: BackofenLab
-  GITHUB_REPOSITORY: BackofenLab/Optimierung-pages
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
@@ -22,15 +18,8 @@ jobs:
   build_rmarkdown_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Get prerequisites and clone repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -x
-          sudo apt-get update
-          sudo apt-get install -y git
-          git clone "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
-        shell: bash
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup Mambaforge
         uses: conda-incubator/setup-miniconda@v3
@@ -50,7 +39,7 @@ jobs:
         with:
           path: ${{ env.CONDA }}/envs
           key:
-            conda-${{ runner.os }}--${{ runner.arch }}--${{steps.get-date.outputs.today }}-${{hashFiles('etc/example-environment-caching.yml') }}-${{ env.CACHE_NUMBER}}
+            conda-${{ runner.os }}--${{ runner.arch }}--${{steps.get-date.outputs.today }}-${{hashFiles('.github/envs/environment.yml') }}-${{ env.CACHE_NUMBER}}
         env:
           # Increase this value to reset cache if etc/example-environment.yml has not changed
           CACHE_NUMBER: 0
