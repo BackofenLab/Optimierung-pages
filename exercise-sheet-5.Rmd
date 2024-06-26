@@ -87,6 +87,7 @@ Diese setzt sich zusammen aus der Lageenergie der Massen sowie der potentiellen 
 
 $$
 V(y, z) = \sum_{i=0}^{N} mgz_i + \frac{1}{2} \sum_{i=0}^{N-1} D \left( (y_i - y_{i+1})^2 + (z_i - z_{i+1})^2 \right),
+\tag{3}
 $$
 
 wobei $g$ die Erdbeschleunigung ist und $D$ die Federkonstante.
@@ -100,27 +101,27 @@ Alles zusammen führt uns zu folgenden nichtlinearen Programmen:
 
 **Variation 1**
 $$
-\begin{aligned}
+\begin{align}
 \underset{y,z \in \mathbb{R}^N}{\text{min}} \quad & V(y, z) \\
 \text{s.t.} \quad & (y_1, z_1) = (-2, 1), \\
 & (y_N, z_N) = (2, 1),  \\
 & z_i \geq 0, \quad 1 \leq i \leq N
-\end{aligned}
+\end{align}
+\tag{4}
 $$
 
 **Variation 2**
 $$
-\begin{equation}
-\begin{aligned}
+\begin{align}
 \underset{y,z \in \mathbb{R}^N}{\text{min}} \quad & V(y, z)\\
 \text{s.t.} \quad & (y_1, z_1) = (-2, 1), \\
 & (y_N, z_N) = (2, 1), \\
 & z_i \geq -y_i^2, \quad 1 \leq i \leq N
-\end{aligned}
-\end{equation}
+\end{align}
+\tag{5}
 $$
 
-Beachten Sie, dass es sich bei NLP (4) um ein konvexes QP handelt (wieso?), während (5) ein nichtkonvexes NLP ist. In `chain.py` finden Sie eine vollständige Implementierung beider Probleme hier von. Abbildung 2 zeigt die Lösungen der beiden Variationen. Für Variation 2 sind zwei mögliche Lösungen dargestellt.
+Beachten Sie, dass es sich bei NLP **(4)** um ein konvexes QP handelt (wieso?), während **(5)** ein nichtkonvexes NLP ist. In `chain.py` finden Sie eine vollständige Implementierung beider Probleme hier von. Abbildung 2 zeigt die Lösungen der beiden Variationen. Für Variation 2 sind zwei mögliche Lösungen dargestellt.
 
 ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.show='hold', fig.cap='**Abbildung 2** - Illustration der hängenden Kette in beiden Variationen'}
 knitr::include_graphics("figures/sheet-5/p3.png")
