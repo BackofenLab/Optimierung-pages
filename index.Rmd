@@ -8,7 +8,6 @@ title: "Optimierung Übungsblätter"
 
 Alle Übungsaufgaben der Vorlesung Optimierung werden über diese Webseite zur Verfügung gestellt.
 
-Die Übungen sind nicht verpflichtend, aber wir empfehlen dringend, sie zu bearbeiten.
 
 :::: {#explaining .message-box }
 
@@ -21,8 +20,12 @@ knitr::include_graphics("figures/infoicon.svg")
 ::: {#note-exp .note-body}
 
 
-Die Übungen sind nicht verpflichtend, aber wir empfehlen dringend, sie zu bearbeiten.
-
+Die Übungen sind freiwillig, aber wir empfehlen Ihnen dringend, sie zu bearbeiten.
 :::
 
 ::::
+
+
+Die unterschiedlichen Übungsblätter finden sie über die Navigationleiste oben.
+
+Die Materialen für jedes Übungsblatt sind in der oberen Leiste jedes Übungsblattes verlinkt.
